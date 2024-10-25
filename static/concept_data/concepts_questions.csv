@@ -1,0 +1,508 @@
+concept,question
+a helmet,"What type of helmet is depicted in the image (e.g., sports, construction, military)?"
+a helmet,What color is the helmet?
+a helmet,Does the helmet have any logos or graphics on it?
+a helmet,Is there a visor attached to the helmet?
+a bin,What shape is the bin?
+a bin,Does the bin have a lid?
+a bin,What material is the bin made from?
+a telescope,Is the telescope stationary or portable?
+a teapot,"What material is the teapot made of (ceramic, metal, glass, etc.)?"
+a teapot,Does the teapot have a lid?
+a teapot,Does the teapot have any decorative designs?
+a teapot,"Is the teapot shown as being used (e.g., tea being poured)?"
+a teapot,What is the shape of the teapot?
+a rug,What material is the rug made of?
+a rug,What is the dominant color of the rug?
+a rug,Does the rug feature any patterns or designs?
+a parachute,Is the parachute open or closed?
+a table,What is the shape of the table?
+a table,What is the color of the table?
+a table,"If visible, how many legs does the table have?"
+a chair,"What type of chair is depicted? (e.g., office chair, dining chair, lounge chair)"
+a chair,Is the chair designed for indoor or outdoor use?
+a chair,What color is the chair?
+a chair,"If visible, how many legs does the chair have?"
+a chair,Does the chair appear to be antique or modern?
+a spinning wheel,Does the spinning wheel have a solid color?
+a spinning wheel,Does the spinning wheel appear to be antique or modern?
+a ring,Is there a gemstone on the ring?
+a ring,What is the dominant color of the ring?
+an ice cream,In what is the ice cream served?
+an ice cream,What is the flavor of the ice cream?
+an ice cream,Is the ice cream in the shape of a scoop?
+an ice cream,What is the color of the ice cream?
+a cake,Does the cake have multiple tiers?
+a cake,Is the cake eaten?
+a cake,In what flavor is the cake?
+a cake,What is the shape of the cake?
+a cake,Does the cake show any signs of fruit on the outside or suggest a fruit flavor?
+a suitcase,Is this a vintage suitcase?
+a suitcase,Is the suitcase open or closed?
+a suitcase,Is the suitcase soft shell or hard shell?
+a suitcase,Is the suitcase dirty or clean?
+a suitcase,What is the color of the suitcase?
+a clock,Is this a classic clock?
+a clock,Is the clock round?
+a clock,Is the clock analog or digital?
+a clock,What is the shape of the clock?
+a clock,Is the clock broken?
+a book,Is the book open or closed?
+a book,Is the book dirty or clean?
+a book,Does the book appear new or worn?
+a bottle,Does the bottle appear dirty or clean?
+a bottle,Does the bottle appear empty?
+a bottle,What is the color of the bottle?
+a bottle,Does the bottle appear opaque or transparent?
+a bottle,Is the bottle open or closed?
+a lantern,Is the lantern lit or not?
+a lantern,What shape does the lantern have?
+a lantern,What type of light source does the lantern use?
+a guitar,Is the guitar acoustic or electric?
+a guitar,What color is the guitar?
+a guitar,Are there any visible patterns or designs on the guitar?
+a guitar,Does the guitar appear new or worn?
+a guitar,Does the guitar appear clean or dirty?
+a uniform,What is the primary color of the uniform?
+a uniform,Does the uniform have any logos or badges?
+a uniform,"Are there any distinguishing features such as stripes, stars, or specific patterns?"
+a baseball bat,What material is the baseball bat made from?
+a baseball bat,What color is the baseball bat?
+a baseball bat,Does the baseball bat appear new or worn?
+a baseball bat,Is the baseball bat dirty?
+yogurt,Does the yogurt contain fruit?
+yogurt,"Is the yogurt in a cup, bowl, or different type of container?"
+yogurt,What is the color of the yogurt?
+yogurt,Is the yogurt eaten?
+yogurt,Does the yogurt contain nuts?
+a pair of headphones,"Are the headphones over-ear, on-ear, or in-ear?"
+a pair of headphones,What color are the headphones?
+an umbrella,Is the umbrella open or closed?
+an umbrella,Is the umbrella being used for protection against sun or rain (or neither)?
+an umbrella,What color is the umbrella?
+a jewelry box,What is the shape of the jewelry box?
+a jewelry box,Is the jewelry box open or closed in the image?
+a jewelry box,Does the jewelry box appear to be modern or antique?
+a jewelry box,Does the jewelry box have any locking mechanism visible?
+a jewelry box,What color is the jewelry box?
+a window,What is the shape of the window?
+a window,Is the window open or closed?
+a window,Is the glass clear or tinted?
+a drawer,Is the drawer open or closed?
+a drawer,What material is the drawer made of?
+a drawer,Is the drawer part of a larger furniture piece?
+a drawer,What color is the drawer?
+a cookie jar,What material is the cookie jar made of?
+a cookie jar,What shape is the cookie jar?
+a cookie jar,Are there visible cookies in the jar?
+a cookie jar,Is the cookie jar transparent or opaque?
+a cookie jar,What color is the cookie jar?
+a toolbox,Is the toolbox open or closed in the image?
+a toolbox,"Does the toolbox appear to be new or used, based on its condition?"
+a toolbox,Is the toolbox portable or part of a larger storage unit?
+a toolbox,What color is the toolbox?
+a person,Does the person appear to be alone or with others?
+a person,Is the person male or female?
+a person,Is the image shows the person from up-close?
+a balloon,What is the shape of the balloon?
+a balloon,What color is the balloon?
+a balloon,Is the balloon floating or lying on the ground?
+a balloon,Is the balloon used in a celebration or decoration setting?
+a flower,What color is the flower?
+a flower,Is the flower part of a bouquet or is it a single flower?
+a flower,Is the flower fully bloomed or still in bud form?
+a flower,What is the shape of the flower?
+a flower,"Is the flower growing alone, or is it part of a cluster?"
+a spacesuit,Does the spacesuit show any signs of wear or damage?
+a spacesuit,What color is the spacesuit?
+a spacesuit,Is the spacesuit in use?
+a spacesuit,Can you identify any tools or equipment attached to the spacesuit?
+a car,What color is the car?
+a car,Does the car appear parked?
+a car,"Is the car a sedan, SUV, coupe, or another type?"
+a car,Is this a vintage car?
+a car,Does the car appear to be new or used?
+a sandcastle,Is the sandcastle intact or partially destroyed?
+a sandcastle,Does the sandcastle have towers?
+a sandcastle,Is there a moat around the sandcastle?
+a sandcastle,What is the color of the sandcastle?
+a sandwich,Does the sandwich contain meat?
+a sandwich,Are there any vegetables in the sandwich?
+a sandwich,What type of bread is used in the sandwich?
+a sandwich,Is the sandwich open-faced or closed?
+a sandwich,Is the sandwich eaten?
+a pair of shoes,"What type of shoes are depicted in the image? (e.g., are they sneakers, formal dress shoes, sandals, boots, or loafers?)"
+a pair of shoes,What is the primary color of the shoes?
+a pair of shoes,"Do the shoes have laces, buckles, or are they slip-ons?"
+a pair of shoes,Are the shoes new or do they show signs of wear?
+a pair of shoes,"Are the shoes designed for a specific activity (like running, hiking, formal wear)?"
+a torch,Is the torch lit?
+a torch,What type of torch is it (flame or electric)?
+a torch,What is the primary color of the torch?
+a torch,What is the primary material used in the torch's construction?
+a torch,Is the torch being held by someone or resting?
+a neon sign,What color is the neon sign?
+a neon sign,Is the neon sign turned on?
+a neon sign,"Where is the neon sign located (e.g., indoors, outdoors, above a door)?"
+a box,"What material is the box made of (e.g., cardboard, plastic, metal)?"
+a box,"What is the shape of the box (e.g., rectangular, square, cylindrical)?"
+a box,Is the box open or closed?
+a box,What is the color of the box?
+a box,Are there any visible signs of wear or damage on the box?
+an apple,What color is the apple?
+an apple,Is the apple whole or cut into pieces?
+an apple,Is the apple eaten?
+an apple,Are there any visible seeds in the apple?
+an apple,"Is the apple depicted as freshly picked, or does it look aged?"
+a bag,"What type of bag is shown in the image (e.g., backpack, handbag, tote)?"
+a bag,"Does the bag have a zipper, snaps, or another type of closure?"
+a bag,What color is the bag?
+a bag,Does the bag appear damaged?
+a bear,What color is the bear?
+a bear,Is the bear sitting or standing?
+a bear,What species of bear is depicted in the image?
+a bear,Is the bear alone or with other bears in the image?
+a bell,What material is the bell made of?
+a bell,Is the bell hanging or standing on a surface?
+a bell,"What is the primary use of the bell (e.g., religious, school, decorative)?"
+a bell,Does the bell appear to be traditional or modern in design?
+a bell,What is the color of the bell?
+hiking boots,What color are the hiking boots?
+hiking boots,Are the hiking boots worn by someone?
+hiking boots,Do the hiking boots appear worn or new?
+a clown,What color is the clown's hair?
+a clown,"Does the clown wear makeup, and if so, what colors are used?"
+a clown,"Is the clown holding any props, such as balloons or juggling items?"
+a clown,"How does the clown’s expression look; is it happy, sad, or mischievous?"
+a crown,Is the crown being worn by someone or displayed in another manner?
+a crown,"What material does the crown appear to be made from? (e.g., gold, silver, bronze)"
+a crown,What is the primary color of the crown?
+a crown,Does the crown have any jewels or gemstones?
+a crown,"Is the crown designed for a king, queen, or another royal figure?"
+a mailbox,What material is the mailbox made of?
+a mailbox,What color is the mailbox?
+a mailbox,Is there a flag on the mailbox?
+a mailbox,"What style is the mailbox (traditional, modern, etc.)?"
+a mailbox,Does the mailbox show any signs of wear or damage?
+a pot,"What is the primary use of the pot, cooking or decoration?"
+a pot,Does the pot have a lid?
+a pot,What is the color of the pot?
+a pot,Does the pot have food in it?
+a pillow,What color is the pillow?
+a pillow,What shape is the pillow?
+a pillow,Does the pillow have any patterns or designs on it?
+a pillow,Does the pillow appear clean or dirty?
+a pool,Is the pool indoor or outdoor?
+a pool,Is there anyone swimming in the pool?
+a pool,What color is the water in the pool?
+a pool,What shape is the pool?
+a popsicle,What color is the popsicle?
+a popsicle,Is the popsicle still frozen or is it melting?
+a popsicle,Is the popsicle eaten?
+a pretzel,Is the pretzel eaten?
+a pretzel,What shape is the pretzel?
+a pretzel,What color is the pretzel?
+a pretzel,Are there toppings on the pretzel?
+a princess,Is the princess wearing a crown or tiara?
+a princess,Is the princess wearing a dress?
+a princess,Does the princess appear in a fairy tale setting?
+a princess,What is the skin color of the princess?
+a princess,What kind of hairstyle does the princess have?
+a refrigerator,What color is the refrigerator?
+a refrigerator,"Is the refrigerator of a single-door, double-door, side-by-side, or some other style?"
+a refrigerator,Does the refrigerator have a traditional or modern design?
+a rope,What color is the rope?
+a rope,"Is the rope coiled, knotted, or stretched straight in the image?"
+a cookie,What shape is the cookie?
+a cookie,Does the cookie have chocolate chips?
+a cookie,Is the cookie part of a larger set or displayed alone?
+a cookie,Is the cookie intact or has it been bitten into or broken?
+a cookie,What is the color of the cookie?
+a cup of soda,Is there a lid on the cup?
+a cup of soda,Does the cup have a straw in it?
+a cup of soda,"If visible, what flavor is the soda (based on its color)?"
+a cup of soda,Is the cup translucent or opaque?
+a cup of soda,Can you see ice in the soda?
+a stick,Is the stick straight or curved?
+a stick,Is the stick broken or intact?
+a stick,What color is the stick?
+a tie,Is the tie a necktie or a bowtie?
+a tie,Is the tie worn with a formal or casual outfit?
+a tie,What is the dominant color of the tie?
+a tie,Is there a pattern on the tie or is it solid in color?
+a toy,"What type of toy is depicted in the image? (e.g., plush toy, action figure, puzzle, board game, doll, construction set, remote-controlled vehicle)"
+a toy,What is the primary color of the toy?
+a toy,What is the shape of the toy?
+a toy,Does the toy appear new or worn?
+a toy,Does the toy appear to be mechanical or electronic?
+a tree,Is the tree flowering?
+a tree,Is the tree full of leaves or is it leafless?
+a tree,What is the color of the tree?
+a tree,Is the trunk of the tree visible?
+cheese,What is the shape of the cheese?
+cheese,Is the cheese part of a larger set or displayed alone?
+cheese,"How old does the cheese appear to be (fresh, aged)?"
+cheese,What color is the cheese?
+cheese,Does the cheese have any visible holes or molds?
+a clothes iron,What color is the clothes iron?
+a clothes iron,Does the clothes iron have a traditional design or modern design?
+a clothes iron,Are there clothes under the iron?
+a clothes iron,Does the clothes iron appear worn or new?
+a banana,What is the color of the banana?
+a banana,Is the banana peeled or unpeeled?
+a banana,Does the banana look ripe?
+a banana,Is the banana whole or sliced?
+a banana,Does the banana have any spots or blemishes?
+an egg,What color is the egg?
+an egg,Is the egg cracked?
+an egg,"Does the egg appear to be from a bird other than a chicken (e.g., larger like an ostrich egg or smaller like a quail egg)?"
+an egg,Is there something separating the egg from the surface?
+an egg,Is the egg raw or cooked?
+a fish,What color is the fish?
+a fish,Is the fish in water?
+a fish,Is the fish alone or with other fish?
+a fish,Is the fish cooked?
+a fish,Does the fish resemble any popular exotic or tropical species?
+a flashlight,Is the flashlight turned on?
+a flashlight,What color is the flashlight?
+a tiara,What is the predominant color of the tiara?
+a tiara,Are there gemstones visible on the tiara?
+a tiara,Does the tiara appear worn or new?
+a tiara,Does the tiara appear to be part of a traditional or modern design?
+a burger,Does the burger have a sesame seed bun?
+a burger,Is the meat patty beef?
+a burger,Is there cheese on the burger?
+a burger,Are there any visible vegetables like lettuce or tomato?
+a burger,Is the burger a single or double patty?
+a cow,Is the cow black and white?
+a cow,Is the cow wearing a tag or a bell?
+a paintbrush,Is the paintbrush new or used?
+a paintbrush,What material is the handle made of?
+a paintbrush,Is the handle of the paint brush made from wood?
+a vase,Is the vase made of glass?
+a vase,Does the vase contain flowers?
+a vase,Is the vase's design simple or ornate?
+a vase,Does the vase have a wide or narrow opening?
+a dice,Does the dice have a cubic shape?
+a dice,Is the color of the dice white?
+a cupcake,Is the cupcake frosted?
+a cupcake,Does the cupcake have sprinkles on top?
+a cupcake,"Is the cupcake a chocolate flavor, vanilla flavor, or neither?"
+a magnifying glass,Is the magnifying glass handheld?
+a magnifying glass,Does the magnifying glass have a metal frame?
+a magnifying glass,Is the handle of the magnifying glass made of wood?
+a magnifying glass,Does the image show the magnifying glass magnifying an object?
+a frisbee,Is the frisbee on the ground?
+a frisbee,Is the frisbee in the air?
+a frisbee,Is the frisbee colorful or a single color?
+a wrench,Is the wrench made of metal?
+a picnic basket,Is the picnic basket made of wicker?
+a picnic basket,Is the picnic basket closed or open in the image?
+a picnic basket,Does the picnic basket have a handle?
+a picnic basket,Is there food in the picnic basket?
+a picnic basket,Is the picnic basket brown?
+a hat,Is the hat made of fabric or straw?
+a hat,Is the hat intended for formal use or casual wear?
+a hat,Is the hat a solid color or patterned?
+a chess piece,"Is the chess piece black, white, or neither?"
+a chess piece,"Is the chess piece a king, queen, rook, bishop, knight, or pawn, or neither?"
+a chess piece,Is the chess piece made of wood or plastic?
+a chess piece,Does the chess piece appear to be in a standard design or a custom design?
+a chess piece,Is the chess piece part of a larger set visible in the image?
+a puzzle,Is there a jigsaw puzzle in the image?
+a mask,Does the mask cover the entire face?
+a mask,"Is the mask intended for protection, decoration, or neither?"
+a mask,"Is the mask made of cloth, plastic, or neither?"
+a mask,Is the mask colorful or monochromatic?
+a mask,Does the mask include any additional elements like feathers or jewels?
+a garden gnome,Is the garden gnome wearing a hat?
+a garden gnome,Does the garden gnome have a beard?
+a garden gnome,"Is the garden gnome holding any objects (e.g., tools, musical instruments)?"
+a garden gnome,What is the primary color of the garden gnome's outfit?
+a garden gnome,Is the garden gnome depicted indoors or outdoors?
+a pacifier,"Is the color of the pacifier blue, pink, or neither?"
+a pacifier,Does the pacifier have a ring handle?
+a pacifier,Does the pacifier appear new or worn?
+a pacifier,Is the material of the pacifier transparent or opaque?
+a sculpture,Is the sculpture abstract?
+a sculpture,Is the sculpture made of metal?
+a sculpture,Does the sculpture represent a human figure?
+a sculpture,Is the sculpture made of stone?
+a tablecloth,Is the tablecloth patterned or plain?
+a tablecloth,"Is the tablecloth round, rectangular, or neither?"
+a tablecloth,Is there a table in the image?
+a tablecloth,Are there any visible stains or damage on the tablecloth?
+a tablecloth,Is the tablecloth laid out or folded?
+a brick,Is the brick red?
+a brick,Is the brick alone or in a stack with others?
+a brick,Does the brick have a rectangular shape?
+a brick,Is the brick laying flat or standing upright?
+a brick,Is the brick whole or broken?
+a witch,Is the witch wearing a hat?
+a witch,Does the witch have a broom?
+a witch,Is the witch's attire black?
+a witch,Is the witch casting a spell?
+a witch,Is there a cauldron present?
+a detective,Is the detective wearing a trench coat?
+a detective,Is the detective holding a magnifying glass?
+a detective,Is the detective wearing a hat?
+a detective,Is the detective holding a notepad?
+a detective,Is the detective female or male?
+a present,Is the present wrapped?
+a present,Does the present have a bow?
+a present,"Is the shape of the present rectangular, square, or neither?"
+a present,Is there a card or tag on the present?
+a present,"If the present is wrapped,does the wrapping have a pattern?"
+a door,Is the door open or closed?
+a door,"Is the door made of wood, metal, or neither?"
+a door,Does the door appear worn or new?
+a door,Is the door single or double?
+a door,Does the door have a modern or a traditional style?
+a pair of glasses,Are the glasses for reading or sunglasses?
+a pair of glasses,Are the lenses of the glasses clear or tinted?
+a pair of glasses,"Are the glasses round, square, oval, or neither?"
+a pair of glasses,Do the glasses have full frames or are they frameless?
+a pair of glasses,Does the frame of the glasses have a solid color or is it patterned?
+a mirror,Is the mirror hanging on a wall or standing on a floor?
+a mirror,Is the mirror cracked?
+a mirror,Is the mirror clear or does it appear foggy?
+a mirror,Is there a frame around the mirror?
+a mirror,"Is the shape of the mirror round, rectangular, or neither?"
+a coconut,Is the coconut whole or cut open?
+a coconut,Is the coconut brown?
+a coconut,Is the coconut fresh or dried?
+a coconut,Is the coconut round?
+a coconut,Does the coconut still have its outer husk?
+a taxi,Is the taxi yellow?
+a taxi,Is there a taxi sign on the roof?
+a taxi,Is the taxi a typical New York-style taxi?
+a taxi,Is the taxi a typical London-style taxi?
+a taxi,Is the taxi a sedan?
+coffee,"Is the coffee in a cup, a mug, or neither?"
+coffee,Is steam rising from the coffee?
+coffee,Is the coffee iced?
+coffee,Is there a saucer under the cup or glass?
+coffee,Does the image include any coffee beans?
+a hot dog,Is the hot dog in a bun?
+a hot dog,Is there any ketchup or mustard on the hot dog?
+a hot dog,Is there is ketchup or mustard on the hotdog?
+a hot dog,"If there is ketchup or mustard, is it in wave form?"
+soap,Is the soap solid or liquid?
+soap,Is the color of the soap plain or multicolored?
+soap,"if the soap is solid, is it in a rectangular shape?"
+soap,Is the soap used or new?
+soap,Is the soap white?
+popcorn,Is the popcorn in a bowl or a popcorn bucket?
+popcorn,Are the popcorn kernels popped?
+popcorn,Does the popcorn seem freshly popped or not?
+corn,Is the corn on the cob?
+corn,Is the corn husked or still covered?
+corn,Is the corn eaten?
+corn,Is the corn being harvested in the image?
+corn,Does the corn appear ripe or unripe?
+a stroller,Is the stroller folded?
+a stroller,Are there any bags or items in the stroller?
+a stroller,Is the stroller black?
+a stroller,Is there a canopy over the seat?
+a stroller,Is there a baby in the stroller?
+a helmet,all
+a bin,all
+a telescope,all
+a teapot,all
+a rug,all
+a parachute,all
+a table,all
+a chair,all
+a spinning wheel,all
+a ring,all
+an ice cream,all
+a cake,all
+a suitcase,all
+a clock,all
+a book,all
+a bottle,all
+a lantern,all
+a guitar,all
+a uniform,all
+a baseball bat,all
+yogurt,all
+a pair of headphones,all
+an umbrella,all
+a jewelry box,all
+a window,all
+a drawer,all
+a cookie jar,all
+a toolbox,all
+a person,all
+a balloon,all
+a flower,all
+a spacesuit,all
+a car,all
+a sandcastle,all
+a sandwich,all
+a pair of shoes,all
+a torch,all
+a neon sign,all
+a box,all
+an apple,all
+a bag,all
+a bear,all
+a bell,all
+hiking boots,all
+a clown,all
+a crown,all
+a mailbox,all
+a pot,all
+a pillow,all
+a pool,all
+a popsicle,all
+a pretzel,all
+a princess,all
+a refrigerator,all
+a rope,all
+a cookie,all
+a cup of soda,all
+a stick,all
+a tie,all
+a toy,all
+a tree,all
+cheese,all
+a clothes iron,all
+a banana,all
+an egg,all
+a fish,all
+a flashlight,all
+a tiara,all
+a burger,all
+a cow,all
+a paintbrush,all
+a vase,all
+a dice,all
+a cupcake,all
+a magnifying glass,all
+a frisbee,all
+a wrench,all
+a picnic basket,all
+a hat,all
+a chess piece,all
+a puzzle,all
+a mask,all
+a garden gnome,all
+a pacifier,all
+a sculpture,all
+a tablecloth,all
+a brick,all
+a witch,all
+a detective,all
+a present,all
+a door,all
+a pair of glasses,all
+a mirror,all
+a coconut,all
+a taxi,all
+coffee,all
+a hot dog,all
+soap,all
+popcorn,all
+corn,all
+a stroller,all

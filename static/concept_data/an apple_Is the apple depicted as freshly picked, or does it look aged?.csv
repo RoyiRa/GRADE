@@ -1,0 +1,13 @@
+model_name,concept_entropy
+sd-1.1,-0.0
+sd-1.4,-0.0
+sd-2.1,0.04805200605825788
+sdxl,0.04812398719396436
+sdxl-turbo,0.10313400033791152
+lcm-sdxl,0.04567079199245743
+sd-3,-0.0
+flux-schnell,-0.0
+flux-dev,-0.0
+deepfloyd-m,0.0454146923337941
+deepfloyd-l,0.03236804986412327
+deepfloyd-xl,0.017861094136750987
