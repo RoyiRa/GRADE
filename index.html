@@ -131,8 +131,52 @@
                 </div>
               </div>
               <!-- Dropdown menus and image display end here -->
-
             </div>
+
+            <div class="container">
+            <!-- Concept Dropdown -->
+            <div class="field">
+              <label class="label">Select Concept</label>
+              <div class="control">
+                <div class="select is-rounded is-dark">
+                  <select id="concept-dropdown">
+                    <!-- Options will be populated by JavaScript -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question Dropdown -->
+            <div class="field">
+              <label class="label">Select Question</label>
+              <div class="control">
+                <div class="select is-rounded is-dark">
+                  <select id="question-dropdown">
+                    <!-- Options will be populated by JavaScript -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table to Display Concept Entropy -->
+            <div class="field">
+              <label class="label">Concept Entropy</label>
+              <div class="control">
+                <table class="table is-striped is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Model Name</th>
+                      <th>Concept Entropy</th>
+                    </tr>
+                  </thead>
+                  <tbody id="entropy-table-body">
+                    <!-- Table rows will be populated by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
           </div>
         </div>
       </div>
@@ -256,6 +300,150 @@
 
       // Your JavaScript code ends here
     });
+
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+  // Variables to store concepts and questions
+  var conceptToQuestions = {};
+
+  // Fetch the concepts_questions.csv file
+  // $.get('static/concept_data/concepts_questions.csv', function(data) {
+  //   parseConceptsQuestionsCSV(data);
+  // });
+ jQuery.get('static/concept_data/concepts_questions.csv', function(data) {
+    parseConceptsQuestionsCSV(data);
+  });
+
+  // Function to parse the concepts_questions.csv
+  function parseConceptsQuestionsCSV(data) {
+    var lines = data.split('\n');
+    // Remove header if present
+    if (lines[0].startsWith('concept')) {
+      lines.shift();
+    }
+
+    lines.forEach(function(line) {
+      if (line.trim() !== '') {
+        var parts = parseCSVLine(line);
+        var concept = parts[0];
+        var question = parts[1];
+
+        if (!(concept in conceptToQuestions)) {
+          conceptToQuestions[concept] = [];
+        }
+        conceptToQuestions[concept].push(question);
+      }
+    });
+
+    populateConceptDropdown();
+  }
+
+  // Function to parse CSV lines
+  function parseCSVLine(line) {
+    var parts = line.split(',');
+    return parts.map(function(item) {
+      return item.replace(/^"|"$/g, '');
+    });
+  }
+
+  // Function to populate the concept dropdown
+  function populateConceptDropdown() {
+    // var conceptDropdown = $('#concept-dropdown');
+    var conceptDropdown = jQuery('#concept-dropdown');
+    conceptDropdown.empty();
+
+    Object.keys(conceptToQuestions).forEach(function(concept) {
+      var option = $('<option></option>').attr('value', concept).text(concept);
+      conceptDropdown.append(option);
+    });
+
+    // Add event listener for concept change
+    conceptDropdown.on('change', function() {
+      var selectedConcept = $(this).val();
+      populateQuestionDropdown(selectedConcept);
+    });
+
+    // Trigger change event to populate questions for the first concept
+    conceptDropdown.trigger('change');
+  }
+
+  // Function to populate the question dropdown
+  function populateQuestionDropdown(concept) {
+    var questionDropdown = $('#question-dropdown');
+    questionDropdown.empty();
+
+    var questions = conceptToQuestions[concept];
+    questions.forEach(function(question) {
+      var option = $('<option></option>').attr('value', question).text(question);
+      questionDropdown.append(option);
+    });
+
+    // Add event listener for question change
+    questionDropdown.on('change', function() {
+      var selectedQuestion = $(this).val();
+      loadConceptEntropy(concept, selectedQuestion);
+    });
+
+    // Trigger change event to load data for the first question
+    questionDropdown.trigger('change');
+  }
+
+  // Function to load the concept entropy CSV and display data
+  function loadConceptEntropy(concept, question) {
+    // Construct the filename
+    var filename = constructEntropyFilename(concept, question);
+    var filepath = 'static/concept_data/' + filename;
+
+    // Fetch the CSV file
+    $.get(filepath, function(data) {
+      parseAndDisplayEntropyData(data);
+    }).fail(function() {
+      alert('Data file not found.');
+      // Clear the table
+      $('#entropy-table-body').empty();
+    });
+  }
+
+  // Function to construct the entropy filename
+  function constructEntropyFilename(concept, question) {
+    var filename = concept + '_' + question + '.csv';
+    return filename;
+  }
+
+  // Function to parse the entropy data and display it
+  function parseAndDisplayEntropyData(data) {
+    var lines = data.trim().split('\n');
+    // Remove header if present
+    if (lines[0].startsWith('model_name')) {
+      lines.shift();
+    }
+
+    var tbody = $('#entropy-table-body');
+    tbody.empty();
+
+    lines.forEach(function(line) {
+      if (line.trim() !== '') {
+        var parts = line.split(',');
+        var modelName = parts[0];
+        var conceptEntropy = parseFloat(parts[1]);
+        // Round to two decimal places
+        conceptEntropy = conceptEntropy.toFixed(2);
+
+        var row = $('<tr></tr>');
+        var modelCell = $('<td></td>').text(modelName);
+        var entropyCell = $('<td></td>').text(conceptEntropy);
+
+        row.append(modelCell);
+        row.append(entropyCell);
+        tbody.append(row);
+      }
+    });
+  }
+});
+
   </script>
 
 </body>
