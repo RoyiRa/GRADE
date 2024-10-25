@@ -57,8 +57,7 @@
               <span class="author-block">
                 <a href="https://lovodkin93.github.io/">Aviv Slobodkin</a><sup>1</sup>,</span>
               <span class="author-block">
-                <a
-                  href="https://shauli-ravfogel.netlify.app/">Shauli Ravfogel</a><sup>1,4</sup>,</span>
+                <a href="https://shauli-ravfogel.netlify.app/">Shauli Ravfogel</a><sup>1,4</sup>,</span>
               <span class="author-block">
                 <a href="https://twitter.com/ravfogel">Yanai Elazar</a><sup>2,3</sup>,</span>
               <span class="author-block">
@@ -73,7 +72,7 @@
               <span class="author-block">Bar-Ilan University</span><sup>1</sup>
               <span class="author-block">Allen Institute for AI</span><sup>2</sup>
               <span class="author-block">University of Washington, Seattle</span><sup>3</sup>
-              <span class="author-block">ETH, Zurich</span><sup>3</sup>
+              <span class="author-block">ETH, Zurich</span><sup>4</sup>
 
             </div>
 
@@ -97,9 +96,41 @@
                     <span>Code</span>
                   </a>
                 </span>
-
-
               </div>
+
+              <!-- Dropdown menus and image display start here -->
+              <div class="container">
+                <div class="field">
+                  <label class="label">Select Model</label>
+                  <div class="control">
+                    <div class="select is-rounded is-dark">
+                      <select id="model-select">
+                        <!-- Options will be populated by JavaScript -->
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Select Concept</label>
+                  <div class="control">
+                    <div class="select is-rounded is-dark">
+                      <select id="concept-select">
+                        <!-- Options will be populated by JavaScript -->
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Image Display -->
+                <div class="field">
+                  <label class="label">Resulting Image</label>
+                  <div class="control">
+                    <img id="result-image" src="" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
+                  </div>
+                </div>
+              </div>
+              <!-- Dropdown menus and image display end here -->
 
             </div>
           </div>
@@ -108,6 +139,7 @@
     </div>
   </div>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="columns is-centered">
@@ -119,7 +151,6 @@
                 Commons Attribution-ShareAlike 4.0 International License</a>.
             </p>
             <p>
-
               The source code of this website is taken from
               the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page.
             </p>
@@ -129,7 +160,7 @@
     </div>
   </footer>
 
-
+  <!-- JavaScript Code -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Initialize all elements with carousel class.
@@ -149,8 +180,82 @@
           console.log(state);
         });
       }
-    });
 
+      // Your JavaScript code for dropdown menus and image display starts here
+
+      // List of models
+      var models = ['sd-1.1', 'sd-1.4', 'sd-2.1', 'sdxl', 'sdxl-turbo', 'lcm-sdxl', 'sd-3', 'flux-dev', 'flux-schnell', 'deepfloyd-l', 'deepfloyd-m', 'deepfloyd-xl'];
+
+      // List of concepts
+      var concepts = ['a helmet', 'a bin', 'a telescope', 'a teapot', 'a rug', 'a parachute', 'a table', 'a chair', 'a spinning wheel', 'a ring', 'an ice cream', 'a cake', 'a suitcase', 'a clock', 'a book', 'a bottle', 'a lantern', 'a guitar', 'a uniform', 'a baseball bat', 'yogurt', 'a pair of headphones', 'an umbrella', 'a jewelry box', 'a window', 'a drawer', 'a cookie jar', 'a toolbox', 'a person', 'a balloon', 'a flower', 'a spacesuit', 'a car', 'a sandcastle', 'a sandwich', 'a pair of shoes', 'a torch', 'a neon sign', 'a box', 'an apple', 'a bag', 'a bear', 'a bell', 'hiking boots', 'a clown', 'a crown', 'a mailbox', 'a pot', 'a pillow', 'a pool', 'a popsicle', 'a pretzel', 'a princess', 'a refrigerator', 'a rope', 'a cookie', 'a cup of soda', 'a stick', 'a tie', 'a toy', 'a tree', 'cheese', 'a clothes iron', 'a banana', 'an egg', 'a fish', 'a flashlight', 'a tiara', 'a burger', 'a cow', 'a paintbrush', 'a vase', 'a dice', 'a cupcake', 'a magnifying glass', 'a frisbee', 'a picnic basket', 'a hat', 'a chess piece', 'a puzzle', 'a mask', 'a garden gnome', 'a pacifier', 'a sculpture', 'a tablecloth', 'a brick', 'a witch', 'a detective', 'a present', 'a door', 'a pair of glasses', 'a mirror', 'a coconut', 'a taxi', 'coffee', 'a hot dog', 'soap', 'popcorn', 'corn', 'a stroller'];
+
+      // Get references to the select elements
+      var modelSelect = document.getElementById('model-select');
+      var conceptSelect = document.getElementById('concept-select');
+      var resultImage = document.getElementById('result-image');
+
+
+      // Populate model dropdown
+      models.forEach(function (model) {
+        var option = document.createElement('option');
+        option.value = model;
+        option.text = model;
+        modelSelect.add(option);
+      });
+
+      modelSelect.value = 'flux-dev';
+
+      // Populate concept dropdown
+      concepts.forEach(function (concept) {
+        var option = document.createElement('option');
+        option.value = concept;
+        option.text = concept;
+        conceptSelect.add(option);
+      });
+
+      conceptSelect.value = 'a cake';
+
+      // Event listeners for selection changes
+      modelSelect.addEventListener('change', updateImage);
+      conceptSelect.addEventListener('change', updateImage);
+
+      updateImage();
+
+      function updateImage() {
+        var model = modelSelect.value;
+        var concept = conceptSelect.value;
+
+        if (model && concept) {
+          // Construct the image path
+          var imagePath = constructImagePath(model, concept);
+
+          // Update the src attribute of the image
+          resultImage.src = imagePath;
+
+          // Update the alt attribute
+          resultImage.alt = 'Image of ' + concept + ' generated by ' + model;
+        }
+      }
+
+      function constructImagePath(model, concept) {
+        // Clean up the concept to match the filename
+        var conceptInFilename = concept;
+
+        // Construct the image path
+        var imagePath = 'static/images/grid_images/' + model + '/' + model + '_' + conceptInFilename + '_grid_images.jpg';
+
+        return imagePath;
+      }
+
+
+      // Add error handling for the image
+      resultImage.addEventListener('error', function() {
+        resultImage.src = ''; // Remove the broken image
+        alert('Image not found. Please try another combination.');
+      });
+
+      // Your JavaScript code ends here
+    });
   </script>
 
 </body>
