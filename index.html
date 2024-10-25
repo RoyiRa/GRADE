@@ -341,13 +341,32 @@
     populateConceptDropdown();
   }
 
-  // Function to parse CSV lines
-  function parseCSVLine(line) {
-    var parts = line.split(',');
-    return parts.map(function(item) {
-      return item.replace(/^"|"$/g, '');
-    });
+  function parseCSVLine(str) {
+    var result = [];
+    var cur = '';
+    var inQuotes = false;
+
+    for (var i = 0; i < str.length; i++) {
+      var c = str[i];
+
+      if (c === '"') {
+        if (inQuotes && str[i + 1] === '"') {
+          cur += '"';
+          i++;
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (c === ',' && !inQuotes) {
+        result.push(cur);
+        cur = '';
+      } else {
+        cur += c;
+      }
+    }
+    result.push(cur);
+    return result;
   }
+
 
   // Function to populate the concept dropdown
   function populateConceptDropdown() {
@@ -392,15 +411,17 @@
   }
 
   // Function to load the concept entropy CSV and display data
+
   function loadConceptEntropy(concept, question) {
     // Construct the filename
     var filename = constructEntropyFilename(concept, question);
-    var filepath = 'static/concept_data/' + filename;
+    // Encode the filepath for the AJAX request
+    var filepath = 'static/concept_data/' + encodeURIComponent(filename);
 
     // Fetch the CSV file
-    $.get(filepath, function(data) {
+    $.get(filepath, function (data) {
       parseAndDisplayEntropyData(data);
-    }).fail(function() {
+    }).fail(function () {
       alert('Data file not found.');
       // Clear the table
       $('#entropy-table-body').empty();
@@ -409,6 +430,7 @@
 
   // Function to construct the entropy filename
   function constructEntropyFilename(concept, question) {
+    
     var filename = concept + '_' + question + '.csv';
     return filename;
   }
