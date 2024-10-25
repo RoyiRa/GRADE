@@ -370,14 +370,16 @@
 
   // Function to populate the concept dropdown
   function populateConceptDropdown() {
-    // var conceptDropdown = $('#concept-dropdown');
-    var conceptDropdown = jQuery('#concept-dropdown');
+    var conceptDropdown = $('#concept-dropdown');
     conceptDropdown.empty();
 
     Object.keys(conceptToQuestions).forEach(function(concept) {
       var option = $('<option></option>').attr('value', concept).text(concept);
       conceptDropdown.append(option);
     });
+
+    // Remove any existing event listeners
+    conceptDropdown.off('change');
 
     // Add event listener for concept change
     conceptDropdown.on('change', function() {
@@ -400,6 +402,9 @@
       questionDropdown.append(option);
     });
 
+    // Remove any existing event listeners
+    questionDropdown.off('change');
+
     // Add event listener for question change
     questionDropdown.on('change', function() {
       var selectedQuestion = $(this).val();
@@ -415,8 +420,7 @@
   function loadConceptEntropy(concept, question) {
     // Construct the filename
     var filename = constructEntropyFilename(concept, question);
-    // Encode the filepath for the AJAX request
-    var filepath = 'static/concept_data/' + encodeURIComponent(filename);
+    var filepath = 'static/concept_data/' + filename;
 
     // Fetch the CSV file
     $.get(filepath, function (data) {
@@ -430,8 +434,10 @@
 
   // Function to construct the entropy filename
   function constructEntropyFilename(concept, question) {
-    
-    var filename = concept + '_' + question + '.csv';
+    // Replace special characters with underscores
+    var safeConcept = concept.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+    var safeQuestion = question.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+    var filename = safeConcept + '_' + safeQuestion + '.csv';
     return filename;
   }
 
@@ -446,9 +452,9 @@
     var tbody = $('#entropy-table-body');
     tbody.empty();
 
-    lines.forEach(function(line) {
+    lines.forEach(function (line) {
       if (line.trim() !== '') {
-        var parts = line.split(',');
+        var parts = parseCSVLine(line);
         var modelName = parts[0];
         var conceptEntropy = parseFloat(parts[1]);
         // Round to two decimal places
