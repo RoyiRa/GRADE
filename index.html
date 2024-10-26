@@ -124,7 +124,7 @@
 
                 <!-- Image Display -->
                 <div class="field">
-                  <label class="label">Resulting Image</label>
+                  <label class="label">A sample of images from all prompts</label>
                   <div class="control">
                     <img id="result-image" src="" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
                   </div>
@@ -158,23 +158,16 @@
               </div>
             </div>
 
-            <!-- Table to Display Concept Entropy -->
-            <div class="field">
-              <label class="label">Concept Entropy</label>
-              <div class="control">
-                <table class="table is-striped is-bordered">
-                  <thead>
-                    <tr>
-                      <th>Model Name</th>
-                      <th>Concept Entropy</th>
-                    </tr>
-                  </thead>
-                  <tbody id="entropy-table-body">
-                    <!-- Table rows will be populated by JavaScript -->
-                  </tbody>
-                </table>
-              </div>
+            <!-- Image to Display the Plot -->
+          <div class="field">
+            <label class="label">Plot</label>
+            <div class="control">
+              <img id="plot-image" src="" alt="Plot will be displayed here" style="max-width: 100%; height: auto;">
             </div>
+          </div>
+
+
+
           </div>
 
           </div>
@@ -305,15 +298,12 @@
 
 
 
-  document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
   // Variables to store concepts and questions
   var conceptToQuestions = {};
 
   // Fetch the concepts_questions.csv file
-  // $.get('static/concept_data/concepts_questions.csv', function(data) {
-  //   parseConceptsQuestionsCSV(data);
-  // });
- jQuery.get('static/concept_data/concepts_questions.csv', function(data) {
+  jQuery.get('static/concept_data/concepts_questions.csv', function (data) {
     parseConceptsQuestionsCSV(data);
   });
 
@@ -325,7 +315,7 @@
       lines.shift();
     }
 
-    lines.forEach(function(line) {
+    lines.forEach(function (line) {
       if (line.trim() !== '') {
         var parts = parseCSVLine(line);
         var concept = parts[0];
@@ -367,13 +357,12 @@
     return result;
   }
 
-
   // Function to populate the concept dropdown
   function populateConceptDropdown() {
     var conceptDropdown = $('#concept-dropdown');
     conceptDropdown.empty();
 
-    Object.keys(conceptToQuestions).forEach(function(concept) {
+    Object.keys(conceptToQuestions).forEach(function (concept) {
       var option = $('<option></option>').attr('value', concept).text(concept);
       conceptDropdown.append(option);
     });
@@ -382,7 +371,7 @@
     conceptDropdown.off('change');
 
     // Add event listener for concept change
-    conceptDropdown.on('change', function() {
+    conceptDropdown.on('change', function () {
       var selectedConcept = $(this).val();
       populateQuestionDropdown(selectedConcept);
     });
@@ -397,7 +386,7 @@
     questionDropdown.empty();
 
     var questions = conceptToQuestions[concept];
-    questions.forEach(function(question) {
+    questions.forEach(function (question) {
       var option = $('<option></option>').attr('value', question).text(question);
       questionDropdown.append(option);
     });
@@ -406,69 +395,38 @@
     questionDropdown.off('change');
 
     // Add event listener for question change
-    questionDropdown.on('change', function() {
+    questionDropdown.on('change', function () {
       var selectedQuestion = $(this).val();
-      loadConceptEntropy(concept, selectedQuestion);
+      loadPlotImage(concept, selectedQuestion);
     });
 
     // Trigger change event to load data for the first question
     questionDropdown.trigger('change');
   }
 
-  // Function to load the concept entropy CSV and display data
-
-  function loadConceptEntropy(concept, question) {
+  // Function to load the plot image
+  function loadPlotImage(concept, question) {
     // Construct the filename
-    var filename = constructEntropyFilename(concept, question);
-    var filepath = 'static/concept_data/' + filename;
+    var filename = constructPlotFilename(concept, question);
+    var filepath = 'static/images/plots/' + filename;
 
-    // Fetch the CSV file
-    $.get(filepath, function (data) {
-      parseAndDisplayEntropyData(data);
-    }).fail(function () {
-      alert('Data file not found.');
-      // Clear the table
-      $('#entropy-table-body').empty();
+    // Update the image src
+    $('#plot-image').attr('src', filepath);
+
+    // Add error handling
+    $('#plot-image').on('error', function () {
+      alert('Image not found. Please try another combination.');
+      $(this).attr('src', ''); // Remove the broken image
     });
   }
 
-  // Function to construct the entropy filename
-  function constructEntropyFilename(concept, question) {
+  // Function to construct the plot filename
+  function constructPlotFilename(concept, question) {
     // Replace special characters with underscores
     var safeConcept = concept.replace(/[\/\\?%*:|"<>()', ]/g, '_');
     var safeQuestion = question.replace(/[\/\\?%*:|"<>()', ]/g, '_');
-    var filename = safeConcept + '_' + safeQuestion + '.csv';
+    var filename = 'plot_' + safeConcept + '_' + safeQuestion + '.jpg';
     return filename;
-  }
-
-  // Function to parse the entropy data and display it
-  function parseAndDisplayEntropyData(data) {
-    var lines = data.trim().split('\n');
-    // Remove header if present
-    if (lines[0].startsWith('model_name')) {
-      lines.shift();
-    }
-
-    var tbody = $('#entropy-table-body');
-    tbody.empty();
-
-    lines.forEach(function (line) {
-      if (line.trim() !== '') {
-        var parts = parseCSVLine(line);
-        var modelName = parts[0];
-        var conceptEntropy = parseFloat(parts[1]);
-        // Round to two decimal places
-        conceptEntropy = conceptEntropy.toFixed(2);
-
-        var row = $('<tr></tr>');
-        var modelCell = $('<td></td>').text(modelName);
-        var entropyCell = $('<td></td>').text(conceptEntropy);
-
-        row.append(modelCell);
-        row.append(entropyCell);
-        tbody.append(row);
-      }
-    });
   }
 });
 
