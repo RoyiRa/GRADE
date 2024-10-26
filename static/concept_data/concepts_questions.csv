@@ -295,7 +295,6 @@ a magnifying glass,Does the image show the magnifying glass magnifying an object
 a frisbee,Is the frisbee on the ground?
 a frisbee,Is the frisbee in the air?
 a frisbee,Is the frisbee colorful or a single color?
-a wrench,Is the wrench made of metal?
 a picnic basket,Is the picnic basket made of wicker?
 a picnic basket,Is the picnic basket closed or open in the image?
 a picnic basket,Does the picnic basket have a handle?
@@ -481,7 +480,6 @@ a dice,all
 a cupcake,all
 a magnifying glass,all
 a frisbee,all
-a wrench,all
 a picnic basket,all
 a hat,all
 a chess piece,all
