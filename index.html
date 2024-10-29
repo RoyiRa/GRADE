@@ -38,6 +38,26 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <!--   <script src="./static/js/bulma-slider.min.js"></script> -->
   <script src="./static/js/index.js"></script>
+
+
+    <!-- Custom CSS to increase font sizes -->
+  <style>
+    /* Increase font size for accordion buttons */
+    .accordion-button {
+      font-size: 20px; /* Adjust as needed */
+/*      font-weight: 500; /* Optional */*/
+    }
+
+    /* Increase font size for labels */
+    .label {
+      font-size: 20px; /* Adjust as needed */
+/*      font-weight: 500; /* Optional */*/
+    }
+    .control {
+      font-size: 20px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -126,54 +146,32 @@
                     </div>
                   </div>
                 </div>
-
+              <!-- Dropdown menus end here -->
+               <!-- Accordion -->
+              <div class="container">
+                <div class="columns">
+                  
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Identified attributes for <span id="selected-concept-display"></span> (click to compare models):</label>
+                    <div class="control">
+                      <div class="accordion" id="question-accordion">
+                        <!-- Accordion items will be populated by JavaScript -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
                 <!-- Image Display -->
                 <div class="field">
-                  <label class="label">A sample of images from all prompts</label>
+                  <label class="label">Showing samples from <span id="selected-model-display"></span></label>
                   <div class="control">
                     <img id="result-image" src="" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
                   </div>
                 </div>
-              </div>
-              <!-- Dropdown menus and image display end here -->
-            </div>
 
-             <!-- Second set of dropdown menus -->
-              <div class="container">
-                <div class="columns">
-                  <div class="column">
-                    <div class="field">
-                      <label class="label">Select Concept</label>
-                      <div class="control">
-                        <div class="select is-rounded is-dark">
-                          <select id="concept-dropdown">
-                            <!-- Options will be populated by JavaScript -->
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="field">
-                      <label class="label">Select Question</label>
-                      <div class="control">
-                        <div class="select is-rounded is-dark">
-                          <select id="question-dropdown">
-                            <!-- Options will be populated by JavaScript -->
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
-            <!-- Image to Display the Plot -->
-          <div class="field">
-            <label class="label">Plot</label>
-            <div class="control">
-              <img id="plot-image" src="" alt="Plot will be displayed here" style="max-width: 100%; height: auto;">
-            </div>
-          </div>
 
 
 
@@ -267,11 +265,14 @@
 
       updateImage();
 
-      function updateImage() {
+     function updateImage() {
         var model = modelSelect.value;
         var concept = conceptSelect.value;
 
         if (model && concept) {
+              // Update the displayed model name
+          document.getElementById('selected-model-display').innerText = model;
+
           // Construct the image path
           var imagePath = constructImagePath(model, concept);
 
@@ -367,76 +368,101 @@
   }
 
   // Function to populate the concept dropdown
-  function populateConceptDropdown() {
-    var conceptDropdown = $('#concept-dropdown');
-    conceptDropdown.empty();
+function populateConceptDropdown() {
+  var conceptDropdown = $('#concept-select');
+  conceptDropdown.empty();
 
-    Object.keys(conceptToQuestions).forEach(function (concept) {
-      var option = $('<option></option>').attr('value', concept).text(concept);
-      conceptDropdown.append(option);
-    });
+  Object.keys(conceptToQuestions).forEach(function (concept) {
+    var option = $('<option></option>').attr('value', concept).text(concept);
+    conceptDropdown.append(option);
+  });
 
-    // Remove any existing event listeners
-    conceptDropdown.off('change');
+  // Set default value
+  conceptDropdown.val('a cake');
 
-    // Add event listener for concept change
-    conceptDropdown.on('change', function () {
-      var selectedConcept = $(this).val();
-      populateQuestionDropdown(selectedConcept);
-    });
 
-    // Trigger change event to populate questions for the first concept
-    conceptDropdown.trigger('change');
-  }
+  // Remove any existing event listeners
+  conceptDropdown.off('change');
 
-  // Function to populate the question dropdown
-  function populateQuestionDropdown(concept) {
-    var questionDropdown = $('#question-dropdown');
-    questionDropdown.empty();
+  // Add event listener for concept change
+  conceptDropdown.on('change', function () {
+    var selectedConcept = $(this).val();
+    populateQuestionAccordion(selectedConcept);
+    updateImage(); // Update the image when concept changes
+  });
 
-    var questions = conceptToQuestions[concept];
-    questions.forEach(function (question) {
-      var option = $('<option></option>').attr('value', question).text(question);
-      questionDropdown.append(option);
-    });
+  // Trigger change event to populate questions for the first concept
+  conceptDropdown.trigger('change');
+}
 
-    // Remove any existing event listeners
-    questionDropdown.off('change');
+// Function to populate the accordion
+function populateQuestionAccordion(concept) {
+  $('#selected-concept-display').text(concept);
+  var questionAccordion = $('#question-accordion');
+  questionAccordion.empty();
 
-    // Add event listener for question change
-    questionDropdown.on('change', function () {
-      var selectedQuestion = $(this).val();
-      loadPlotImage(concept, selectedQuestion);
-    });
+  var questions = conceptToQuestions[concept];
+  questions.forEach(function (question, index) {
+    var accordionItem = `
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading${index}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
+            ${question}
+          </button>
+        </h2>
+        <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#question-accordion">
+          <div class="accordion-body">
+            <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 100%; height: auto; display: none;">
+          </div>
+        </div>
+      </div>
+    `;
+    questionAccordion.append(accordionItem);
+  });
 
-    // Trigger change event to load data for the first question
-    questionDropdown.trigger('change');
-  }
+  // Add click event listener to accordion buttons
+  $('.accordion-button').on('click', function () {
+    var selectedQuestion = $(this).text().trim();
+    var parentAccordionItem = $(this).closest('.accordion-item');
+    var index = parentAccordionItem.index(); // Get the index of the accordion item
+    loadPlotImage(concept, selectedQuestion, index);
+  });
+}
 
-  // Function to load the plot image
-  function loadPlotImage(concept, question) {
-    // Construct the filename
-    var filename = constructPlotFilename(concept, question);
-    var filepath = 'static/images/plots/' + filename;
+// Function to load the plot image
+function loadPlotImage(concept, question, index) {
+  // Construct the filename based on the concept and question
+  console.log(concept, ' concept is');
+  console.log(question, ' question is ');
+  var filename = constructPlotFilename(concept, question);
+  var filepath = 'static/images/plots/' + filename;
 
-    // Update the image src
-    $('#plot-image').attr('src', filepath);
+  // Select the specific plot image within the accordion item
+  var plotImage = $('#plot-image-' + index);
+  
+  // Update the 'src' attribute of the image to display the new plot
+  plotImage.attr('src', filepath);
+  
+  // Show the image if it's hidden
+  plotImage.show();
 
-    // Add error handling
-    $('#plot-image').on('error', function () {
-      alert('Image not found. Please try another combination.');
-      $(this).attr('src', ''); // Remove the broken image
-    });
-  }
+  // Add error handling in case the image doesn't exist
+  plotImage.off('error').on('error', function () {
+    alert('Image not found. Please try another combination.');
+    $(this).attr('src', ''); // Clear the 'src' attribute to remove the broken image
+    $(this).hide(); // Hide the image if not found
+  });
+}
 
-  // Function to construct the plot filename
-  function constructPlotFilename(concept, question) {
-    // Replace special characters with underscores
-    var safeConcept = concept.replace(/[\/\\?%*:|"<>()', ]/g, '_');
-    var safeQuestion = question.replace(/[\/\\?%*:|"<>()', ]/g, '_');
-    var filename = 'plot_' + safeConcept + '_' + safeQuestion + '.jpg';
-    return filename;
-  }
+
+// Function to construct the plot filename
+function constructPlotFilename(concept, question) {
+  // Replace special characters with underscores
+  var safeConcept = concept.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+  var safeQuestion = question.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+  var filename = 'plot_' + safeConcept + '_' + safeQuestion + '.jpg';
+  return filename;
+}
 });
 
   </script>
