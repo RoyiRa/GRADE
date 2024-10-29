@@ -56,6 +56,8 @@
     .control {
       font-size: 20px;
     }
+
+
   </style>
 
 </head>
@@ -117,72 +119,129 @@
                   </a>
                 </span>
               </div>
-
-              <!-- First set of dropdown menus -->
-              <div class="container">
-                <div class="columns">
-                  <div class="column">
-                    <div class="field">
-                      <label class="label">Select Model</label>
-                      <div class="control">
-                        <div class="select is-rounded is-dark">
-                          <select id="model-select">
-                            <!-- Options will be populated by JavaScript -->
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="field">
-                      <label class="label">Select Concept</label>
-                      <div class="control">
-                        <div class="select is-rounded is-dark">
-                          <select id="concept-select">
-                            <!-- Options will be populated by JavaScript -->
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <!-- Dropdown menus end here -->
-               <!-- Accordion -->
-              <div class="container">
-                <div class="columns">
-                  
-                <div class="column">
-                  <div class="field">
-                    <label class="label">Identified attributes for <span id="selected-concept-display"></span> (click to compare models):</label>
-                    <div class="control">
-                      <div class="accordion" id="question-accordion">
-                        <!-- Accordion items will be populated by JavaScript -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
             </div>
-                <!-- Image Display -->
-                <div class="field">
-                  <label class="label">Showing samples from <span id="selected-model-display"></span></label>
-                  <div class="control">
-                    <img id="result-image" src="" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
-                  </div>
-                </div>
-
-                </div>
-
-
-
-
-          </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Abstract. -->
+  <div class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+               Text-to-image (T2I) models are remarkable at generating realistic images based on textual descriptions. However, textual prompts are inherently <em>underspecified</em>: they do not specify all possible attributes of the required image. This raises two key questions: Do T2I models generate diverse outputs on underspecified prompts? How can we automatically measure diversity? We propose GRADE: <strong>GR</strong><strong>A</strong><strong>D</strong><strong>E</strong> (<strong>Gr</strong>anular <strong>A</strong>ttribute <strong>D</strong>iversity <strong>E</strong>valuation), an automatic method for quantifying sample diversity. GRADE leverages the world knowledge embedded in large language models and visual question-answering systems to identify relevant concept-specific axes of diversity (e.g., "shape" and "color" for the concept "cookie"). It then estimates frequency distributions of concepts and their attributes and quantifies diversity using (normalized) entropy. GRADE achieves over 90% human agreement while exhibiting weak correlation to commonly used diversity metrics. We use GRADE to measure the overall diversity of 12 T2I models using 400 concept-attribute pairs, revealing that all models display limited variation. Further, we find that these models often exhibit <em>default behaviors</em>, a phenomenon where the model consistently generates concepts with the same attributes (e.g., 98% of the cookies are round). Finally, we demonstrate that a key reason for low diversity is due to underspecified captions in training data. Our work proposes a modern, semantically-driven approach to measure sample diversity and highlights the stunning homogeneity in outputs by T2I models.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<!-- Gist of Our Work -->
+<div class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+
+          <!-- Collapsible Card Component -->
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                The gist of our work
+              </p>
+              <button class="card-header-icon" aria-label="more options" id="toggle-card-content">
+                <span class="icon">
+                   <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </header>
+            <div class="card-content" id="card-content">
+              <div class="content">
+                <p>
+                  
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Content after Abstract -->
+<div class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+
+      <!-- First set of dropdown menus -->
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Select Model</label>
+            <div class="control">
+              <div class="select is-rounded is-dark">
+                <select id="model-select">
+                  <!-- Options will be populated by JavaScript -->
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label class="label">Select Concept</label>
+            <div class="control">
+              <div class="select is-rounded is-dark">
+                <select id="concept-select">
+                  <!-- Options will be populated by JavaScript -->
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Dropdown menus end here -->
+
+      <!-- Accordion -->
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Identified attributes for <span id="selected-concept-display"></span> (click to compare models):</label>
+            <div class="control">
+              <div class="accordion" id="question-accordion">
+                <!-- Accordion items will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Display -->
+      <div class="field">
+        <label class="label">Showing samples from <span id="selected-model-display"></span></label>
+        <div class="control">
+          <img id="result-image" src="" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -493,7 +552,7 @@
         });
 
         // Add click event listener to accordion buttons
-        $('.accordion-button').on('click', function () {
+        $('#question-accordion .accordion-button').on('click', function () {
           var selectedQuestion = $(this).text().trim();
           var parentAccordionItem = $(this).closest('.accordion-item');
           var index = parentAccordionItem.index(); // Get the index of the accordion item
@@ -593,6 +652,30 @@
 
     });
   </script>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var toggleButton = document.getElementById('toggle-card-content');
+    var cardContent = document.getElementById('card-content');
+    var icon = toggleButton.querySelector('i');
+
+    toggleButton.addEventListener('click', function () {
+      cardContent.classList.toggle('is-hidden');
+
+      // Toggle the icon to indicate collapse/expand
+      if (icon.classList.contains('fa-angle-down')) {
+        icon.classList.remove('fa-angle-down');
+        icon.classList.add('fa-angle-up');
+      } else {
+        icon.classList.remove('fa-angle-up');
+        icon.classList.add('fa-angle-down');
+      }
+    });
+  });
+
+</script>
 
 </body>
 
