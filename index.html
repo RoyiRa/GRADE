@@ -206,6 +206,40 @@
 
   <!-- JavaScript Code -->
   <script>
+    // Global variables
+    var models = ['sd-1.1', 'sd-1.4', 'sd-2.1', 'sdxl', 'sdxl-turbo', 'lcm-sdxl', 'sd-3', 'flux-dev', 'flux-schnell', 'deepfloyd-l', 'deepfloyd-m', 'deepfloyd-xl'];
+
+      // List of concepts
+    var concepts = ['a helmet', 'a bin', 'a telescope', 'a teapot', 'a rug', 'a parachute', 'a table', 'a chair', 'a spinning wheel', 'a ring', 'an ice cream', 'a cake', 'a suitcase', 'a clock', 'a book', 'a bottle', 'a lantern', 'a guitar', 'a uniform', 'a baseball bat', 'yogurt', 'a pair of headphones', 'an umbrella', 'a jewelry box', 'a window', 'a drawer', 'a cookie jar', 'a toolbox', 'a person', 'a balloon', 'a flower', 'a spacesuit', 'a car', 'a sandcastle', 'a sandwich', 'a pair of shoes', 'a torch', 'a neon sign', 'a box', 'an apple', 'a bag', 'a bear', 'a bell', 'hiking boots', 'a clown', 'a crown', 'a mailbox', 'a pot', 'a pillow', 'a pool', 'a popsicle', 'a pretzel', 'a princess', 'a refrigerator', 'a rope', 'a cookie', 'a cup of soda', 'a stick', 'a tie', 'a toy', 'a tree', 'cheese', 'a clothes iron', 'a banana', 'an egg', 'a fish', 'a flashlight', 'a tiara', 'a burger', 'a cow', 'a paintbrush', 'a vase', 'a dice', 'a cupcake', 'a magnifying glass', 'a frisbee', 'a picnic basket', 'a hat', 'a chess piece', 'a puzzle', 'a mask', 'a garden gnome', 'a pacifier', 'a sculpture', 'a tablecloth', 'a brick', 'a witch', 'a detective', 'a present', 'a door', 'a pair of glasses', 'a mirror', 'a coconut', 'a taxi', 'coffee', 'a hot dog', 'soap', 'popcorn', 'corn', 'a stroller'];
+    var conceptToQuestions = {};
+
+    // Function to parse CSV line
+    function parseCSVLine(str) {
+      var result = [];
+      var cur = '';
+      var inQuotes = false;
+
+      for (var i = 0; i < str.length; i++) {
+        var c = str[i];
+
+        if (c === '"') {
+          if (inQuotes && str[i + 1] === '"') {
+            cur += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (c === ',' && !inQuotes) {
+          result.push(cur);
+          cur = '';
+        } else {
+          cur += c;
+        }
+      }
+      result.push(cur);
+      return result;
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       // Initialize all elements with carousel class.
       var carousels = bulmaCarousel.attach('#results-carousel', {
@@ -227,11 +261,6 @@
 
       // Your JavaScript code for dropdown menus and image display starts here
 
-      // List of models
-      var models = ['sd-1.1', 'sd-1.4', 'sd-2.1', 'sdxl', 'sdxl-turbo', 'lcm-sdxl', 'sd-3', 'flux-dev', 'flux-schnell', 'deepfloyd-l', 'deepfloyd-m', 'deepfloyd-xl'];
-
-      // List of concepts
-      var concepts = ['a helmet', 'a bin', 'a telescope', 'a teapot', 'a rug', 'a parachute', 'a table', 'a chair', 'a spinning wheel', 'a ring', 'an ice cream', 'a cake', 'a suitcase', 'a clock', 'a book', 'a bottle', 'a lantern', 'a guitar', 'a uniform', 'a baseball bat', 'yogurt', 'a pair of headphones', 'an umbrella', 'a jewelry box', 'a window', 'a drawer', 'a cookie jar', 'a toolbox', 'a person', 'a balloon', 'a flower', 'a spacesuit', 'a car', 'a sandcastle', 'a sandwich', 'a pair of shoes', 'a torch', 'a neon sign', 'a box', 'an apple', 'a bag', 'a bear', 'a bell', 'hiking boots', 'a clown', 'a crown', 'a mailbox', 'a pot', 'a pillow', 'a pool', 'a popsicle', 'a pretzel', 'a princess', 'a refrigerator', 'a rope', 'a cookie', 'a cup of soda', 'a stick', 'a tie', 'a toy', 'a tree', 'cheese', 'a clothes iron', 'a banana', 'an egg', 'a fish', 'a flashlight', 'a tiara', 'a burger', 'a cow', 'a paintbrush', 'a vase', 'a dice', 'a cupcake', 'a magnifying glass', 'a frisbee', 'a picnic basket', 'a hat', 'a chess piece', 'a puzzle', 'a mask', 'a garden gnome', 'a pacifier', 'a sculpture', 'a tablecloth', 'a brick', 'a witch', 'a detective', 'a present', 'a door', 'a pair of glasses', 'a mirror', 'a coconut', 'a taxi', 'coffee', 'a hot dog', 'soap', 'popcorn', 'corn', 'a stroller'];
 
       // Get references to the select elements
       var modelSelect = document.getElementById('model-select');
@@ -307,165 +336,264 @@
 
 
 
+    // Document ready function
+    document.addEventListener('DOMContentLoaded', function () {
+      // Initialize all elements with carousel class.
+      // ... (carousel code)
 
- document.addEventListener('DOMContentLoaded', function () {
-  // Variables to store concepts and questions
-  var conceptToQuestions = {};
+      // Get references to the select elements
+      var modelSelect = document.getElementById('model-select');
+      var conceptSelect = document.getElementById('concept-select');
+      var resultImage = document.getElementById('result-image');
 
-  // Fetch the concepts_questions.csv file
-  jQuery.get('static/concept_data/concepts_questions.csv', function (data) {
-    parseConceptsQuestionsCSV(data);
-  });
+      // Fetch the concepts_questions.csv file
+      jQuery.get('static/concept_data/concepts_questions.csv', function (data) {
+        parseConceptsQuestionsCSV(data);
+      });
 
-  // Function to parse the concepts_questions.csv
-  function parseConceptsQuestionsCSV(data) {
-    var lines = data.split('\n');
-    // Remove header if present
-    if (lines[0].startsWith('concept')) {
-      lines.shift();
-    }
-
-    lines.forEach(function (line) {
-      if (line.trim() !== '') {
-        var parts = parseCSVLine(line);
-        var concept = parts[0];
-        var question = parts[1];
-
-        if (!(concept in conceptToQuestions)) {
-          conceptToQuestions[concept] = [];
+      // Function to parse the concepts_questions.csv
+      function parseConceptsQuestionsCSV(data) {
+        var lines = data.split('\n');
+        // Remove header if present
+        if (lines[0].startsWith('concept')) {
+          lines.shift();
         }
-        conceptToQuestions[concept].push(question);
+
+        lines.forEach(function (line) {
+          if (line.trim() !== '') {
+            var parts = parseCSVLine(line);
+            var concept = parts[0];
+            var question = parts[1];
+
+            if (!(concept in conceptToQuestions)) {
+              conceptToQuestions[concept] = [];
+            }
+            conceptToQuestions[concept].push(question);
+          }
+        });
+
+        populateConceptDropdown();
+        populateModelDropdown();
       }
+
+      // Function to populate the concept dropdown
+      function populateConceptDropdown() {
+        var conceptDropdown = $('#concept-select');
+        conceptDropdown.empty();
+
+        Object.keys(conceptToQuestions).forEach(function (concept) {
+          var option = $('<option></option>').attr('value', concept).text(concept);
+          conceptDropdown.append(option);
+        });
+
+        // Set default value
+        conceptDropdown.val('a cake');
+
+        // Remove any existing event listeners
+        conceptDropdown.off('change');
+
+        // Add event listener for concept change
+        conceptDropdown.on('change', function () {
+          var selectedConcept = $(this).val();
+          populateQuestionAccordion(selectedConcept);
+          updateImage(); // Update the image when concept changes
+        });
+
+        // Trigger change event to populate questions for the first concept
+        conceptDropdown.trigger('change');
+      }
+
+      // Function to populate the model dropdown
+      function populateModelDropdown() {
+        var modelDropdown = $('#model-select');
+        modelDropdown.empty();
+
+        models.forEach(function (model) {
+          var option = $('<option></option>').attr('value', model).text(model);
+          modelDropdown.append(option);
+        });
+
+        // Set default value
+        modelDropdown.val('flux-dev');
+
+        // Remove any existing event listeners
+        modelDropdown.off('change');
+
+        // Add event listener for model change
+        modelDropdown.on('change', function () {
+          updateImage();
+        });
+
+        // Trigger change event to update image for the first model
+        modelDropdown.trigger('change');
+      }
+
+      // function updateImage() {
+      //   var model = $('#model-select').val();
+      //   var concept = $('#concept-select').val();
+
+      //   if (model && concept) {
+      //     // Update the displayed model name
+      //     document.getElementById('selected-model-display').innerText = model;
+
+      //     // Construct the image path
+      //     var imagePath = constructImagePath(model, concept);
+
+      //     // Update the src attribute of the image
+      //     resultImage.src = imagePath;
+
+      //     // Update the alt attribute
+      //     resultImage.alt = 'Image of ' + concept + ' generated by ' + model;
+      //   }
+      // }
+
+      // function constructImagePath(model, concept) {
+      //   // Clean up the concept to match the filename
+      //   var conceptInFilename = concept.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+
+      //   // Construct the image path
+      //   var imagePath = 'static/images/grid_images/' + model + '/' + model + '_' + conceptInFilename + '_grid_images.jpg';
+
+      //   return imagePath;
+      // }
+
+      // Add error handling for the image
+      resultImage.addEventListener('error', function () {
+        resultImage.src = ''; // Remove the broken image
+        alert('Image not found. Please try another combination.');
+      });
+
+      // Function to populate the accordion
+      function populateQuestionAccordion(concept) {
+        $('#selected-concept-display').text(concept);
+        var questionAccordion = $('#question-accordion');
+        questionAccordion.empty();
+
+        var questions = conceptToQuestions[concept];
+        questions.forEach(function (question, index) {
+          var accordionItem = `
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading${index}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
+                  ${question}
+                </button>
+              </h2>
+              <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#question-accordion">
+                <div class="accordion-body">
+                  <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 100%; height: auto; display: none;">
+                  <!-- Histogram Grid -->
+                  <div id="histogram-grid-${index}" class="histogram-grid" style="display: none;">
+                    <!-- Histograms will be appended here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          questionAccordion.append(accordionItem);
+        });
+
+        // Add click event listener to accordion buttons
+        $('.accordion-button').on('click', function () {
+          var selectedQuestion = $(this).text().trim();
+          var parentAccordionItem = $(this).closest('.accordion-item');
+          var index = parentAccordionItem.index(); // Get the index of the accordion item
+          var selectedConcept = $('#concept-select').val();
+          loadPlotImage(selectedConcept, selectedQuestion, index);
+        });
+      }
+
+      function loadPlotImage(concept, question, index) {
+        // Construct the filename based on the concept and question
+        console.log(concept, ' concept is');
+        console.log(question, ' question is ');
+        var filename = constructPlotFilename(concept, question);
+        var filepath = 'static/images/plots/' + filename;
+
+        // Select the specific plot image within the accordion item
+        var plotImage = $('#plot-image-' + index);
+
+        // Update the 'src' attribute of the image to display the new plot
+        plotImage.attr('src', filepath);
+
+        // Show the image if it's hidden
+        plotImage.show();
+
+        // Add error handling in case the image doesn't exist
+        plotImage.off('error').on('error', function () {
+          alert('Image not found. Please try another combination.');
+          $(this).attr('src', ''); // Clear the 'src' attribute to remove the broken image
+          $(this).hide(); // Hide the image if not found
+        });
+
+        // Now load the histogram images
+        loadHistogramImages(concept, question, index);
+      }
+
+      function constructPlotFilename(concept, question) {
+        // Replace special characters with underscores
+        var safeConcept = concept.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+        var safeQuestion = question.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+        var filename = 'plot_' + safeConcept + '_' + safeQuestion + '.jpg';
+        return filename;
+      }
+
+      function loadHistogramImages(concept, question, index) {
+        // Get the histogram-grid div
+        var histogramGrid = $('#histogram-grid-' + index);
+
+        // Clear any existing content
+        histogramGrid.empty();
+
+        // Show the histogram grid
+        histogramGrid.show();
+
+        // Sanitize concept and question for filenames
+        var safeConcept = concept.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+        var safeQuestion = question.replace(/[\/\\?%*:|"<>()', ]/g, '_');
+
+        // Create the first row
+        var firstRow = $('<div class="row"></div>');
+
+        // Create the second row
+        var secondRow = $('<div class="row"></div>');
+
+        // Loop over the models, and for each, create an image element
+        models.forEach(function (model, i) {
+          var histogramImagePath = 'static/images/histograms/' + model + '/' + safeConcept + '_' + safeQuestion + '_histogram.jpg';
+
+          // Create the img element
+          var img = $('<img>')
+            .attr('src', histogramImagePath)
+            .attr('alt', 'Histogram for ' + model)
+            .css({ 'max-width': '100%', 'height': 'auto' });
+
+          // Add error handling
+          img.on('error', function () {
+            $(this).attr('src', ''); // Clear the src
+            $(this).hide();
+          });
+
+          // Create a div for the image and label
+          var col = $('<div class="col-md-12 text-center"></div>');
+          col.append(img);
+          col.append('<div>' + model + '</div>');
+
+          // Append to the appropriate row
+          if (i < 6) {
+            firstRow.append(col);
+          } else {
+            secondRow.append(col);
+          }
+        });
+
+        // Append the rows to the histogram-grid
+        histogramGrid.append(firstRow);
+        histogramGrid.append(secondRow);
+      }
+
     });
-
-    populateConceptDropdown();
-  }
-
-  function parseCSVLine(str) {
-    var result = [];
-    var cur = '';
-    var inQuotes = false;
-
-    for (var i = 0; i < str.length; i++) {
-      var c = str[i];
-
-      if (c === '"') {
-        if (inQuotes && str[i + 1] === '"') {
-          cur += '"';
-          i++;
-        } else {
-          inQuotes = !inQuotes;
-        }
-      } else if (c === ',' && !inQuotes) {
-        result.push(cur);
-        cur = '';
-      } else {
-        cur += c;
-      }
-    }
-    result.push(cur);
-    return result;
-  }
-
-  // Function to populate the concept dropdown
-function populateConceptDropdown() {
-  var conceptDropdown = $('#concept-select');
-  conceptDropdown.empty();
-
-  Object.keys(conceptToQuestions).forEach(function (concept) {
-    var option = $('<option></option>').attr('value', concept).text(concept);
-    conceptDropdown.append(option);
-  });
-
-  // Set default value
-  conceptDropdown.val('a cake');
-
-
-  // Remove any existing event listeners
-  conceptDropdown.off('change');
-
-  // Add event listener for concept change
-  conceptDropdown.on('change', function () {
-    var selectedConcept = $(this).val();
-    populateQuestionAccordion(selectedConcept);
-    updateImage(); // Update the image when concept changes
-  });
-
-  // Trigger change event to populate questions for the first concept
-  conceptDropdown.trigger('change');
-}
-
-// Function to populate the accordion
-function populateQuestionAccordion(concept) {
-  $('#selected-concept-display').text(concept);
-  var questionAccordion = $('#question-accordion');
-  questionAccordion.empty();
-
-  var questions = conceptToQuestions[concept];
-  questions.forEach(function (question, index) {
-    var accordionItem = `
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="heading${index}">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
-            ${question}
-          </button>
-        </h2>
-        <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#question-accordion">
-          <div class="accordion-body">
-            <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 100%; height: auto; display: none;">
-          </div>
-        </div>
-      </div>
-    `;
-    questionAccordion.append(accordionItem);
-  });
-
-  // Add click event listener to accordion buttons
-  $('.accordion-button').on('click', function () {
-    var selectedQuestion = $(this).text().trim();
-    var parentAccordionItem = $(this).closest('.accordion-item');
-    var index = parentAccordionItem.index(); // Get the index of the accordion item
-    loadPlotImage(concept, selectedQuestion, index);
-  });
-}
-
-// Function to load the plot image
-function loadPlotImage(concept, question, index) {
-  // Construct the filename based on the concept and question
-  console.log(concept, ' concept is');
-  console.log(question, ' question is ');
-  var filename = constructPlotFilename(concept, question);
-  var filepath = 'static/images/plots/' + filename;
-
-  // Select the specific plot image within the accordion item
-  var plotImage = $('#plot-image-' + index);
-  
-  // Update the 'src' attribute of the image to display the new plot
-  plotImage.attr('src', filepath);
-  
-  // Show the image if it's hidden
-  plotImage.show();
-
-  // Add error handling in case the image doesn't exist
-  plotImage.off('error').on('error', function () {
-    alert('Image not found. Please try another combination.');
-    $(this).attr('src', ''); // Clear the 'src' attribute to remove the broken image
-    $(this).hide(); // Hide the image if not found
-  });
-}
-
-
-// Function to construct the plot filename
-function constructPlotFilename(concept, question) {
-  // Replace special characters with underscores
-  var safeConcept = concept.replace(/[\/\\?%*:|"<>()', ]/g, '_');
-  var safeQuestion = question.replace(/[\/\\?%*:|"<>()', ]/g, '_');
-  var filename = 'plot_' + safeConcept + '_' + safeQuestion + '.jpg';
-  return filename;
-}
-});
-
   </script>
 
 </body>
+
 </html>
