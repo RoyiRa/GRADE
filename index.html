@@ -184,64 +184,60 @@
 
 
 <!-- Content after Abstract -->
-<div class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
+  <div class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
 
-      <!-- First set of dropdown menus -->
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <label class="label">Select Model</label>
-            <div class="control">
-              <div class="select is-rounded is-dark">
-                <select id="model-select">
-                  <!-- Options will be populated by JavaScript -->
-                </select>
+        <!-- Only the Concept Dropdown -->
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label">Select Concept</label>
+              <div class="control">
+                <div class="select is-rounded is-dark">
+                  <select id="concept-select">
+                    <!-- Options will be populated by JavaScript -->
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="column">
-          <div class="field">
-            <label class="label">Select Concept</label>
-            <div class="control">
-              <div class="select is-rounded is-dark">
-                <select id="concept-select">
-                  <!-- Options will be populated by JavaScript -->
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- Dropdown menus end here -->
 
       <!-- Accordion -->
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <label class="label">Identified attributes for <span id="selected-concept-display"></span> (click to compare models):</label>
-            <div class="control">
-              <div class="accordion" id="question-accordion">
-                <!-- Accordion items will be populated by JavaScript -->
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label">Identified attributes for <span id="selected-concept-display"></span> (click to compare models):</label>
+              <div class="control">
+                <div class="accordion" id="question-accordion">
+                  <!-- Accordion items will be populated by JavaScript -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Image Display -->
-      <div class="field">
-        <label class="label">Showing samples from <span id="selected-model-display"></span></label>
-        <div class="control">
-          <img id="result-image" src="" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
+        <!-- Image Display -->
+        <div class="field">
+          <label class="label">Showing samples from
+            <!-- Model Dropdown Moved Here -->
+            <div class="select is-rounded is-dark" style="display: inline-block; margin-left: 10px;">
+              <select id="model-select">
+                <!-- Options will be populated by JavaScript -->
+              </select>
+            </div>
+          </label>
+          <div class="control">
+            <img id="result-image" src="" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
-</div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -299,7 +295,7 @@
       return result;
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+       document.addEventListener('DOMContentLoaded', function () {
       // Initialize all elements with carousel class.
       var carousels = bulmaCarousel.attach('#results-carousel', {
         slidesToScroll: 1,
@@ -310,107 +306,17 @@
         autoplaySpeed: 5000,
       });
 
-      // Loop on each carousel initialized
-      for (var i = 0; i < carousels.length; i++) {
-        // Add listener to  event
-        carousels[i].on('before:show', state => {
-          console.log(state);
-        });
-      }
-
-      // Your JavaScript code for dropdown menus and image display starts here
-
-
       // Get references to the select elements
       var modelSelect = document.getElementById('model-select');
       var conceptSelect = document.getElementById('concept-select');
       var resultImage = document.getElementById('result-image');
 
-
-      // Populate model dropdown
-      models.forEach(function (model) {
-        var option = document.createElement('option');
-        option.value = model;
-        option.text = model;
-        modelSelect.add(option);
-      });
-
-      modelSelect.value = 'flux-dev';
-
-      // Populate concept dropdown
-      concepts.forEach(function (concept) {
-        var option = document.createElement('option');
-        option.value = concept;
-        option.text = concept;
-        conceptSelect.add(option);
-      });
-
-      conceptSelect.value = 'a cake';
-
-      // Event listeners for selection changes
-      modelSelect.addEventListener('change', updateImage);
-      conceptSelect.addEventListener('change', updateImage);
-
-      updateImage();
-
-     function updateImage() {
-        var model = modelSelect.value;
-        var concept = conceptSelect.value;
-
-        if (model && concept) {
-              // Update the displayed model name
-          document.getElementById('selected-model-display').innerText = model;
-
-          // Construct the image path
-          var imagePath = constructImagePath(model, concept);
-
-          // Update the src attribute of the image
-          resultImage.src = imagePath;
-
-          // Update the alt attribute
-          resultImage.alt = 'Image of ' + concept + ' generated by ' + model;
-        }
-      }
-
-      function constructImagePath(model, concept) {
-        // Clean up the concept to match the filename
-        var conceptInFilename = concept;
-
-        // Construct the image path
-        var imagePath = 'static/images/grid_images/' + model + '/' + model + '_' + conceptInFilename + '_grid_images.jpg';
-
-        return imagePath;
-      }
-
-
-      // Add error handling for the image
-      resultImage.addEventListener('error', function() {
-        resultImage.src = ''; // Remove the broken image
-        alert('Image not found. Please try another combination.');
-      });
-
-      // Your JavaScript code ends here
-    });
-
-
-
-
-    // Document ready function
-    document.addEventListener('DOMContentLoaded', function () {
-      // Initialize all elements with carousel class.
-      // ... (carousel code)
-
-      // Get references to the select elements
-      var modelSelect = document.getElementById('model-select');
-      var conceptSelect = document.getElementById('concept-select');
-      var resultImage = document.getElementById('result-image');
-
-      // Fetch the concepts_questions.csv file
+      // Fetch the CSV file
       jQuery.get('static/grade_benchmark.csv', function (data) {
         parseConceptsQuestionsCSV(data);
       });
 
-      // Function to parse the concepts_questions.csv
+      // Function to parse the CSV
       function parseConceptsQuestionsCSV(data) {
         var lines = data.split('\n');
         // Remove header if present
@@ -423,11 +329,15 @@
             var parts = parseCSVLine(line);
             var concept = parts[0];
             var question = parts[1];
+            var attribute_values = parts.length > 2 ? parts[2] : '';
 
             if (!(concept in conceptToQuestions)) {
               conceptToQuestions[concept] = [];
             }
-            conceptToQuestions[concept].push(question);
+            conceptToQuestions[concept].push({
+              question: question,
+              attribute_values: attribute_values
+            });
           }
         });
 
@@ -487,6 +397,33 @@
         modelDropdown.trigger('change');
       }
 
+      // Function to update the image based on selections
+      function updateImage() {
+        var model = modelSelect.value;
+        var concept = conceptSelect.value;
+
+        if (model && concept) {
+          // Construct the image path
+          var imagePath = constructImagePath(model, concept);
+
+          // Update the src attribute of the image
+          resultImage.src = imagePath;
+
+          // Update the alt attribute
+          resultImage.alt = 'Image of ' + concept + ' generated by ' + model;
+        }
+      }
+
+      function constructImagePath(model, concept) {
+        // Clean up the concept to match the filename
+        var conceptInFilename = concept;
+
+        // Construct the image path
+        var imagePath = 'static/images/grid_images/' + model + '/' + model + '_' + conceptInFilename + '_grid_images.jpg';
+
+        return imagePath;
+      }
+
       // Add error handling for the image
       resultImage.addEventListener('error', function () {
         resultImage.src = ''; // Remove the broken image
@@ -495,58 +432,107 @@
 
       // Function to populate the accordion
       function populateQuestionAccordion(concept) {
-    $('#selected-concept-display').text(concept);
-    var questionAccordion = $('#question-accordion');
-    questionAccordion.empty();
+        $('#selected-concept-display').text(concept);
+        var questionAccordion = $('#question-accordion');
+        questionAccordion.empty();
 
-    var questions = conceptToQuestions[concept];
-    questions.forEach(function (question, index) {
-        var buttonLabel = question.toLowerCase() === 'all' ? 'Mean entropy over all attributes' : question;
+        var questionItems = conceptToQuestions[concept];
+        questionItems.forEach(function (item, index) {
+          var question = item.question;
+          var attribute_values = item.attribute_values;
 
-        var accordionItem = `
-            <!-- Updated Accordion Item -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading${index}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
-                        ${buttonLabel}
-                    </button>
-                </h2>
-                <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}">
-                    <div class="accordion-body">
-                        <!-- Plot Image Div -->
-                        <div id="plot-div-${index}">
-                            <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none; margin: 0 auto; display: block;">
-                        </div>
-                        <!-- Title with added padding -->
-                        <h1 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">${question}</h1> <!-- Changed: Added 3em padding-top -->
-                        <!-- Subtitle -->
-                        <h2 style="color: #8c275d; text-align: center;">breakdown by model (<span style="display: inline-block; width: 1em; height: 1em; background-color: #ff9999; vertical-align: middle;"></span> indicates a default behavior)</h2>
-                        <!-- Histogram Grid -->
-                        <div id="histogram-grid-${index}" class="histogram-grid" style="display: none; padding-top: 3em;">
-                            <!-- Histograms will be appended here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        questionAccordion.append(accordionItem);
-    });
+          var buttonLabel = question.toLowerCase() === 'all' ? 'Mean entropy over all attributes' : question;
 
-    // Add click event listener to accordion buttons
-    $('#question-accordion .accordion-button').on('click', function () {
-        var selectedQuestion = $(this).text().trim();
-        var parentAccordionItem = $(this).closest('.accordion-item');
-        var index = parentAccordionItem.index(); // Get the index of the accordion item
-        var selectedConcept = $('#concept-select').val();
+          // Generate the attribute values list
+          var attributeHTML = '';
+          if (attribute_values && attribute_values.trim() !== '') {
+            attributeList = attribute_values
+            // Check and remove the opening bracket
+            if (attributeList.startsWith('[')) {
+                attributeList = attributeList.substring(1);
+            }
 
-        // Map the button label back to 'all' if necessary
-        if (selectedQuestion === 'Mean entropy over all attributes') {
-            selectedQuestion = 'all';
+            // Check and remove the closing bracket
+            if (attributeList.endsWith(']')) {
+                attributeList = attributeList.substring(0, attributeList.length - 1);
+            }
+            var attributeList = attributeList.split(',').map(function (s) { return s.trim(); });
+            var letters = 'abcdefghijklmnopqrstuvwxyz';
+            attributeHTML = '<h3 style="text-align: center;">';
+            attributeList.forEach(function (attribute, idx) {
+              var letter = letters.charAt(idx % letters.length);
+              attributeHTML += letter + '. ' + attribute;
+              if (idx < attributeList.length - 1) {
+                attributeHTML += '&nbsp;&nbsp;&nbsp;&nbsp;';
+              }
+            });
+            attributeHTML += '</h3>';
+          }
+
+var accordionItem = `
+  <!-- Updated Accordion Item -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading${index}">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
+        ${buttonLabel}
+      </button>
+    </h2>
+    <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}">
+      <div class="accordion-body">
+        <!-- Plot Image Div -->
+        <div id="plot-div-${index}">
+          <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none; margin: 0 auto; display: block;">
+        </div>
+        ${
+          question !== "all" 
+            ? `
+              <!-- Title with added padding -->
+              <h1 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">
+                ${question}
+              </h1>
+              <!-- Subtitle -->
+              <h2 style="color: #8c275d; text-align: center;">
+                Breakdown by model 
+                (<span style="display: inline-block; width: 1em; height: 1em; background-color: #ff9999; vertical-align: middle;"></span> indicates a default behavior)
+              </h2>
+            `
+            : ''
         }
+        <!-- Attribute Values -->
+        ${attributeHTML}
+        ${
+          question !== "all" 
+            ? `
+              <!-- Histogram Grid -->
+              <div id="histogram-grid-${index}" class="histogram-grid" style="display: none; padding-top: 3em;">
+                <!-- Histograms will be appended here -->
+              </div>
+            `
+            : ''
+        }
+      </div>
+    </div>
+  </div>
+`;
 
-        loadPlotImage(selectedConcept, selectedQuestion, index);
-    });
-}
+          questionAccordion.append(accordionItem);
+        });
+
+        // Add click event listener to accordion buttons
+        $('#question-accordion .accordion-button').on('click', function () {
+          var selectedQuestion = $(this).text().trim();
+          var parentAccordionItem = $(this).closest('.accordion-item');
+          var index = parentAccordionItem.index(); // Get the index of the accordion item
+          var selectedConcept = $('#concept-select').val();
+
+          // Map the button label back to 'all' if necessary
+          if (selectedQuestion === 'Mean entropy over all attributes') {
+            selectedQuestion = 'all';
+          }
+
+          loadPlotImage(selectedConcept, selectedQuestion, index);
+        });
+      }
 
       function loadPlotImage(concept, question, index) {
         // Construct the filename based on the concept and question
@@ -572,7 +558,6 @@
         // Now load the histogram images
         if (question != 'all') {
           loadHistogramImages(concept, question, index);
-
         }
       }
 
@@ -584,67 +569,63 @@
         return filename;
       }
 
-    function loadHistogramImages(concept, question, index) {
-    // Get the histogram-grid div
-    var histogramGrid = $('#histogram-grid-' + index);
+      function loadHistogramImages(concept, question, index) {
+        // Get the histogram-grid div
+        var histogramGrid = $('#histogram-grid-' + index);
 
-    // Clear any existing content
-    histogramGrid.empty();
+        // Clear any existing content
+        histogramGrid.empty();
 
-    // Show the histogram grid
-    histogramGrid.show();
+        // Show the histogram grid
+        histogramGrid.show();
 
-    // Sanitize concept and question for filenames
-    var safeConcept = concept.replace(/[\/\\?%*:|"<>()\', ]/g, '_');
-    var safeQuestion = question.replace(/[\/\\?%*:|"<>()\', ]/g, '_');
+        // Sanitize concept and question for filenames
+        var safeConcept = concept.replace(/[\/\\?%*:|"<>()\', ]/g, '_');
+        var safeQuestion = question.replace(/[\/\\?%*:|"<>()\', ]/g, '_');
 
-    // Construct the path to the combined histogram image
-    var histogramImagePath = 'static/images/histograms_combined/' + safeConcept + '_' + safeQuestion + '_histogram.jpg';
+        // Construct the path to the combined histogram image
+        var histogramImagePath = 'static/images/histograms_combined/' + safeConcept + '_' + safeQuestion + '_histogram.jpg';
 
-    // Create the img element
-    var img = $('<img>')
-        .attr('src', histogramImagePath)
-        .attr('alt', 'Histogram for ' + concept + ' - ' + question)
-        .css({ 'max-width': '100%', 'height': 'auto' });
+        // Create the img element
+        var img = $('<img>')
+          .attr('src', histogramImagePath)
+          .attr('alt', 'Histogram for ' + concept + ' - ' + question)
+          .css({ 'max-width': '100%', 'height': 'auto' });
 
-    // Add error handling
-    img.on('error', function () {
-        $(this).attr('src', ''); // Clear the src
-        $(this).hide();
-        alert('Combined histogram image not found. Please check if the image exists at the specified path.');
-    });
+        // Add error handling
+        img.on('error', function () {
+          $(this).attr('src', ''); // Clear the src
+          $(this).hide();
+          alert('Combined histogram image not found. Please check if the image exists at the specified path.');
+        });
 
-    // Append the image to the histogram-grid
-    histogramGrid.append(img);
-}
-
+        // Append the image to the histogram-grid
+        histogramGrid.append(img);
+      }
 
     });
   </script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggleButton = document.getElementById('toggle-card-content');
+      var cardContent = document.getElementById('card-content');
+      var icon = toggleButton.querySelector('i');
 
+      toggleButton.addEventListener('click', function () {
+        cardContent.classList.toggle('is-hidden');
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var toggleButton = document.getElementById('toggle-card-content');
-    var cardContent = document.getElementById('card-content');
-    var icon = toggleButton.querySelector('i');
-
-    toggleButton.addEventListener('click', function () {
-      cardContent.classList.toggle('is-hidden');
-
-      // Toggle the icon to indicate collapse/expand
-      if (icon.classList.contains('fa-angle-down')) {
-        icon.classList.remove('fa-angle-down');
-        icon.classList.add('fa-angle-up');
-      } else {
-        icon.classList.remove('fa-angle-up');
-        icon.classList.add('fa-angle-down');
-      }
+        // Toggle the icon to indicate collapse/expand
+        if (icon.classList.contains('fa-angle-down')) {
+          icon.classList.remove('fa-angle-down');
+          icon.classList.add('fa-angle-up');
+        } else {
+          icon.classList.remove('fa-angle-up');
+          icon.classList.add('fa-angle-down');
+        }
+      });
     });
-  });
-
-</script>
+  </script>
 
 </body>
 
