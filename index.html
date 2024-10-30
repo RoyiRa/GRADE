@@ -504,17 +504,29 @@
         var buttonLabel = question.toLowerCase() === 'all' ? 'Mean entropy over all attributes' : question;
 
         var accordionItem = `
+            <!-- Updated Accordion Item -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading${index}">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
                         ${buttonLabel}
                     </button>
                 </h2>
-                <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#question-accordion">
+                <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}">
                     <div class="accordion-body">
-                        <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none; margin: 0 auto; display: block;">
+                        <!-- Plot Image Div -->
+                        <div id="plot-div-${index}">
+                            <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none; margin: 0 auto; display: block;">
+                        </div>
+                        ${
+                            question.toLowerCase() !== 'all' ? 
+                            `<!-- Title with padding -->
+                            <h1 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">${question}</h1>
+                            <!-- Subtitle -->
+                            <h2 style="color: #8c275d; text-align: center;">breakdown by model (<span style="color: #ff9999;">&#9633;</span> indicates a default behavior)</h2>`
+                            : ''
+                        }
                         <!-- Histogram Grid -->
-                        <div id="histogram-grid-${index}" class="histogram-grid" style="display: none;">
+                        <div id="histogram-grid-${index}" class="histogram-grid" style="display: none; padding-top: 3em;">
                             <!-- Histograms will be appended here -->
                         </div>
                     </div>
