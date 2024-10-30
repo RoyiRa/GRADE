@@ -406,7 +406,7 @@
       var resultImage = document.getElementById('result-image');
 
       // Fetch the concepts_questions.csv file
-      jQuery.get('static/concept_data/concepts_questions.csv', function (data) {
+      jQuery.get('static/grade_benchmark.csv', function (data) {
         parseConceptsQuestionsCSV(data);
       });
 
@@ -517,14 +517,10 @@
                         <div id="plot-div-${index}">
                             <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none; margin: 0 auto; display: block;">
                         </div>
-                        ${
-                            question.toLowerCase() !== 'all' ? 
-                            `<!-- Title with padding -->
-                            <h1 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">${question}</h1>
-                            <!-- Subtitle -->
-                            <h2 style="color: #8c275d; text-align: center;">breakdown by model (<span style="color: #ff9999;">&#9633;</span> indicates a default behavior)</h2>`
-                            : ''
-                        }
+                        <!-- Title with added padding -->
+                        <h1 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">${question}</h1> <!-- Changed: Added 3em padding-top -->
+                        <!-- Subtitle -->
+                        <h2 style="color: #8c275d; text-align: center;">breakdown by model (<span style="display: inline-block; width: 1em; height: 1em; background-color: #ff9999; vertical-align: middle;"></span> indicates a default behavior)</h2>
                         <!-- Histogram Grid -->
                         <div id="histogram-grid-${index}" class="histogram-grid" style="display: none; padding-top: 3em;">
                             <!-- Histograms will be appended here -->
