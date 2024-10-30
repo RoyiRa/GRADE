@@ -188,28 +188,22 @@
     <div class="hero-body">
       <div class="container is-max-desktop">
 
-        <!-- Only the Concept Dropdown -->
-        <div class="columns">
-          <div class="column">
-            <div class="field">
-              <label class="label">Select Concept</label>
-              <div class="control">
-                <div class="select is-rounded is-dark">
-                  <select id="concept-select">
-                    <!-- Options will be populated by JavaScript -->
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       <!-- Dropdown menus end here -->
 
       <!-- Accordion -->
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label">Identified attributes for <span id="selected-concept-display"></span> (click to compare models):</label>
+              <label class="label">Identified attributes for                 
+                <div class="select is-rounded is-dark">
+                  <select id="concept-select">
+                    <!-- Options will be populated by JavaScript -->
+                  </select>
+                </div>
+
+                <!-- <span id="selected-concept-display"></span> (click to compare models): -->
+
+              </label>
               <div class="control">
                 <div class="accordion" id="question-accordion">
                   <!-- Accordion items will be populated by JavaScript -->
