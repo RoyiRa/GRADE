@@ -469,6 +469,25 @@
             attributeHTML += '</h3>';
           }
 
+        let conditionalContent = '';
+        if (question !== "all") {
+          conditionalContent += `
+            <!-- Title with added padding -->
+            <h1 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">
+              ${question}
+            </h1>
+            <!-- Subtitle -->
+            <h2 style="color: #8c275d; text-align: center;">
+              Breakdown by model 
+              (<span style="display: inline-block; width: 1em; height: 1em; background-color: #ff9999; vertical-align: middle;"></span> indicates a default behavior)
+            </h2>
+            <!-- Histogram Grid -->
+            <div id="histogram-grid-${index}" class="histogram-grid" style="display: none; padding-top: 3em;">
+              <!-- Histograms will be appended here -->
+            </div>
+          `;
+        }
+
 var accordionItem = `
   <!-- Updated Accordion Item -->
   <div class="accordion-item">
@@ -479,6 +498,10 @@ var accordionItem = `
     </h2>
     <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}">
       <div class="accordion-body">
+        <!-- Title Above Plot Image -->
+        <h2 class="plot-title" style="color: #8c275d; text-align: center; margin-bottom: 1em;">
+          Diversity score (score entropy) plotted against parameter size
+        </h2>
         <!-- Plot Image Div -->
         <div id="plot-div-${index}">
           <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none; margin: 0 auto; display: block;">
@@ -487,9 +510,9 @@ var accordionItem = `
           question !== "all" 
             ? `
               <!-- Title with added padding -->
-              <h1 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">
+              <h2 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">
                 ${question}
-              </h1>
+              </h2>
               <!-- Subtitle -->
               <h2 style="color: #8c275d; text-align: center;">
                 Breakdown by model 
