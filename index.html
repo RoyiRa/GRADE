@@ -235,15 +235,17 @@
   <!-- Cite Us -->
   <section class="section" id="BibTeX">
     <div class="container is-centered is-max-desktop content">
-      <h2 class="title has-text-centered ">Cite Us</h2>
-      <pre><code>@article{rassin2024linguistic,
-        title={Linguistic binding in diffusion models: Enhancing attribute correspondence through attention map alignment},
-        author={Rassin, Royi and Hirsch, Eran and Glickman, Daniel and Ravfogel, Shauli and Goldberg, Yoav and Chechik, Gal},
-        journal={Advances in Neural Information Processing Systems},
-        volume={36},
-        year={2024}
-      }
-}</code></pre>
+      <h2 class="title has-text-centered ">Cite Us 📜🖊️</h2>
+      <pre><code>@misc{rassin2024gradequantifyingsamplediversity,
+        title={GRADE: Quantifying Sample Diversity in Text-to-Image Models}, 
+        author={Royi Rassin and Aviv Slobodkin and Shauli Ravfogel and Yanai Elazar and Yoav Goldberg},
+        year={2024},
+        eprint={2410.22592},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV},
+        url={https://arxiv.org/abs/2410.22592}, 
+  }
+</code></pre>
     </div>
   </section>
 
@@ -375,7 +377,7 @@
         conceptDropdown.on('change', function () {
           var selectedConcept = $(this).val();
           populateQuestionAccordion(selectedConcept);
-          // updateImage(); // Update the image when concept changes
+          updateImage(); // Update the image when concept changes
         });
 
         // Trigger change event to populate questions for the first concept
