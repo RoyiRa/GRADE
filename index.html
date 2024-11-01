@@ -57,6 +57,51 @@
       font-size: 20px;
     }
 
+    .flex-container {
+      display: flex;
+    }
+
+    .flex-item {
+      width: 80%;
+      text-align: center;
+
+    }
+    .flex-item-80 {
+      width: 80%;
+    }
+
+    .flex-container-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .flex-item-half {
+      width: 48%;
+    }
+    .flex-item-66 {
+      width: 66.6667%;
+    }
+
+    /* Flex Container for Centered Content with Max Width */
+    .flex-container-content {
+      display: flex;
+      flex-direction: column; /* Stacks children vertically */
+      align-items: center;    /* Centers children horizontally */
+      justify-content: center;/* Centers children vertically if container has height */
+      max-width: 960px;       /* Equivalent to Bulma's is-max-desktop; adjust as needed */
+      margin: 0 auto;         /* Centers the container itself */
+      padding: 1rem;          /* Optional: Adds padding inside the container */
+    }
+
+    /* Content Styling (if not already defined) */
+    .content {
+      /* Retain or define styles for content */
+      /* Example: */
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
 
   </style>
 
@@ -67,9 +112,9 @@
 
   <div class="hero">
     <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
+      <div class="flex-container">
+        <div class="flex-item">
+          <h1 class="title is-1 publication-title">
 
 
             <h1 class="title is-1 publication-title">GRADE: Quantifying Sample Diversity <br> in Text-to-Image Models</h1>
@@ -98,7 +143,7 @@
 
             </div>
 
-            <div class="column has-text-centered">
+            <div class="flex-item">
               <div class="publication-links">
                 <span class="link-block">
                   <a href="https://arxiv.org/abs/2410.22592" class="external-link button is-normal is-rounded is-dark">
@@ -131,8 +176,8 @@
     <div class="hero-body">
       <div class="container is-max-desktop">
 
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
+          <div class="flex-container">
+            <div class="flex-item">
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
@@ -150,8 +195,9 @@
   <div class="hero-body">
     <div class="container is-max-desktop">
 
-      <div class="columns is-centered">
-        <div class="column is-four-fifths">
+      <div class="flex-container flex-row justify-center">
+        <div class="flex-item flex-item-80">
+
 
           <!-- Collapsible Card Component -->
           <div class="card">
@@ -186,14 +232,13 @@
 <!-- Content after Abstract -->
   <div class="hero is-light is-small">
     <div class="hero-body">
-      <div class="container is-max-desktop">
+      <div class="flex-container">
 
       <!-- Dropdown menus end here -->
 
       <!-- Accordion -->
-        <div class="columns">
-          <div class="column">
-            <div class="field">
+        <div class="flex-container-row">
+            <div class="flex-item-row">
               <label class="label">Identified attributes for                 
                 <div class="select is-rounded is-dark">
                   <select id="concept-select">
@@ -234,7 +279,7 @@
 
   <!-- Cite Us -->
   <section class="section" id="BibTeX">
-    <div class="container is-centered is-max-desktop content">
+    <div class="flex-container-content content">
       <h2 class="title has-text-centered ">Cite Us 📜🖊️</h2>
       <pre><code>@misc{rassin2024gradequantifyingsamplediversity,
         title={GRADE: Quantifying Sample Diversity in Text-to-Image Models}, 
@@ -253,8 +298,8 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
+      <div class="flex-container">
+        <div class="flex-item flex-item-66">
           <div class="content">
             <p>
               This website is licensed under a <a rel="license"
