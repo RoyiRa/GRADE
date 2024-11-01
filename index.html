@@ -23,9 +23,9 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <!--   <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma-carousel.min.css"> -->
+  <!-- <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
+  <!-- <link rel="stylesheet" href="./static/css/fontawesome.all.min.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/a_cookie.jpg">
@@ -37,7 +37,6 @@
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <!--   <script src="./static/js/bulma-slider.min.js"></script> -->
-  <script src="./static/js/index.js"></script>
 
 
     <!-- Custom CSS to increase font sizes -->
@@ -56,53 +55,6 @@
     .control {
       font-size: 20px;
     }
-
-    .flex-container {
-      display: flex;
-    }
-
-    .flex-item {
-      width: 80%;
-      text-align: center;
-
-    }
-    .flex-item-80 {
-      width: 80%;
-    }
-
-    .flex-container-row {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .flex-item-half {
-      width: 48%;
-    }
-    .flex-item-66 {
-      width: 66.6667%;
-    }
-
-    /* Flex Container for Centered Content with Max Width */
-    .flex-container-content {
-      display: flex;
-      flex-direction: column; /* Stacks children vertically */
-      align-items: center;    /* Centers children horizontally */
-      justify-content: center;/* Centers children vertically if container has height */
-      max-width: 960px;       /* Equivalent to Bulma's is-max-desktop; adjust as needed */
-      margin: 0 auto;         /* Centers the container itself */
-      padding: 1rem;          /* Optional: Adds padding inside the container */
-    }
-
-    /* Content Styling (if not already defined) */
-    .content {
-      /* Retain or define styles for content */
-      /* Example: */
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #333;
-    }
-
   </style>
 
 </head>
@@ -112,9 +64,9 @@
 
   <div class="hero">
     <div class="hero-body">
-      <div class="flex-container">
-        <div class="flex-item">
-          <h1 class="title is-1 publication-title">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
 
 
             <h1 class="title is-1 publication-title">GRADE: Quantifying Sample Diversity <br> in Text-to-Image Models</h1>
@@ -143,7 +95,7 @@
 
             </div>
 
-            <div class="flex-item">
+            <div class="column has-text-centered">
               <div class="publication-links">
                 <span class="link-block">
                   <a href="https://arxiv.org/abs/2410.22592" class="external-link button is-normal is-rounded is-dark">
@@ -176,8 +128,8 @@
     <div class="hero-body">
       <div class="container is-max-desktop">
 
-          <div class="flex-container">
-            <div class="flex-item">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
@@ -195,9 +147,8 @@
   <div class="hero-body">
     <div class="container is-max-desktop">
 
-      <div class="flex-container flex-row justify-center">
-        <div class="flex-item flex-item-80">
-
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
 
           <!-- Collapsible Card Component -->
           <div class="card">
@@ -214,7 +165,7 @@
             <div class="card-content" id="card-content">
               <div class="content">
                 <p>
-                  
+
                 </p>
               </div>
             </div>
@@ -232,13 +183,14 @@
 <!-- Content after Abstract -->
   <div class="hero is-light is-small">
     <div class="hero-body">
-      <div class="flex-container">
+      <div class="container is-max-desktop">
 
       <!-- Dropdown menus end here -->
 
       <!-- Accordion -->
-        <div class="flex-container-row">
-            <div class="flex-item-row">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
               <label class="label">Identified attributes for                 
                 <div class="select is-rounded is-dark">
                   <select id="concept-select">
@@ -269,7 +221,7 @@
             </div>
           </label>
           <div class="control">
-            <img id="result-image" src="" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
+            <img id="result-image" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
           </div>
         </div>
 
@@ -279,7 +231,7 @@
 
   <!-- Cite Us -->
   <section class="section" id="BibTeX">
-    <div class="flex-container-content content">
+    <div class="container is-centered is-max-desktop content">
       <h2 class="title has-text-centered ">Cite Us 📜🖊️</h2>
       <pre><code>@misc{rassin2024gradequantifyingsamplediversity,
         title={GRADE: Quantifying Sample Diversity in Text-to-Image Models}, 
@@ -298,8 +250,8 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="flex-container">
-        <div class="flex-item flex-item-66">
+      <div class="columns is-centered">
+        <div class="column is-8">
           <div class="content">
             <p>
               This website is licensed under a <a rel="license"
@@ -320,10 +272,10 @@
   <script>
     // Global variables
     var models = ['sd-1.1', 'sd-1.4', 'sd-2.1', 'sdxl', 'sdxl-turbo', 'lcm-sdxl', 'sd-3', 'flux-dev', 'flux-schnell', 'deepfloyd-l', 'deepfloyd-m', 'deepfloyd-xl'];
-
       // List of concepts
     var concepts = ['a helmet', 'a bin', 'a telescope', 'a teapot', 'a rug', 'a parachute', 'a table', 'a chair', 'a spinning wheel', 'a ring', 'an ice cream', 'a cake', 'a suitcase', 'a clock', 'a book', 'a bottle', 'a lantern', 'a guitar', 'a uniform', 'a baseball bat', 'yogurt', 'a pair of headphones', 'an umbrella', 'a jewelry box', 'a window', 'a drawer', 'a cookie jar', 'a toolbox', 'a person', 'a balloon', 'a flower', 'a spacesuit', 'a car', 'a sandcastle', 'a sandwich', 'a pair of shoes', 'a torch', 'a neon sign', 'a box', 'an apple', 'a bag', 'a bear', 'a bell', 'hiking boots', 'a clown', 'a crown', 'a mailbox', 'a pot', 'a pillow', 'a pool', 'a popsicle', 'a pretzel', 'a princess', 'a refrigerator', 'a rope', 'a cookie', 'a cup of soda', 'a stick', 'a tie', 'a toy', 'a tree', 'cheese', 'a clothes iron', 'a banana', 'an egg', 'a fish', 'a flashlight', 'a tiara', 'a burger', 'a cow', 'a paintbrush', 'a vase', 'a dice', 'a cupcake', 'a magnifying glass', 'a frisbee', 'a picnic basket', 'a hat', 'a chess piece', 'a puzzle', 'a mask', 'a garden gnome', 'a pacifier', 'a sculpture', 'a tablecloth', 'a brick', 'a witch', 'a detective', 'a present', 'a door', 'a pair of glasses', 'a mirror', 'a coconut', 'a taxi', 'coffee', 'a hot dog', 'soap', 'popcorn', 'corn', 'a stroller'];
     var conceptToQuestions = {};
+    firstTimeGridImagesShown = true;
 
     // Function to parse CSV line
     function parseCSVLine(str) {
@@ -422,7 +374,9 @@
         conceptDropdown.on('change', function () {
           var selectedConcept = $(this).val();
           populateQuestionAccordion(selectedConcept);
-          updateImage(); // Update the image when concept changes
+          if (!firstTimeGridImagesShown) {
+            updateImage(); // Update the image when concept changes
+          }
         });
 
         // Trigger change event to populate questions for the first concept
@@ -458,16 +412,17 @@
       function updateImage() {
         var model = modelSelect.value;
         var concept = conceptSelect.value;
-
+        console.log('now testing you mate', model, concept, 'test me now')
         if (model && concept) {
           // Construct the image path
           var imagePath = constructImagePath(model, concept);
-
+          console.log(imagePath, ' wow!')
           // Update the src attribute of the image
           resultImage.src = imagePath;
 
           // Update the alt attribute
           resultImage.alt = 'Image of ' + concept + ' generated by ' + model;
+          firstTimeGridImagesShown = false;
         }
       }
 
@@ -484,7 +439,7 @@
       // Add error handling for the image
       resultImage.addEventListener('error', function () {
         resultImage.src = ''; // Remove the broken image
-        alert('Image not found. Please try another combination.');
+        alert('Grid Image not found. Please try another combination.');
       });
 
       // Function to populate the accordion
@@ -630,7 +585,7 @@ var accordionItem = `
 
         // Add error handling in case the image doesn't exist
         plotImage.off('error').on('error', function () {
-          alert('Image not found. Please try another combination.');
+          alert('Histogram Image not found. Please try another combination.');
           $(this).attr('src', ''); // Clear the 'src' attribute to remove the broken image
           $(this).hide(); // Hide the image if not found
         });
@@ -709,4 +664,3 @@ var accordionItem = `
 
 </body>
 
-</html>
