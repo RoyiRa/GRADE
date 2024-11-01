@@ -362,7 +362,7 @@
         var conceptDropdown = $('#concept-select');
         conceptDropdown.empty();
 
-        Object.keys(conceptToQuestions).forEach(function (concept) {
+        Object.keys(conceptToQuestions).sort().forEach(function (concept) {
           var option = $('<option></option>').attr('value', concept).text(concept);
           conceptDropdown.append(option);
         });
@@ -389,7 +389,7 @@
         var modelDropdown = $('#model-select');
         modelDropdown.empty();
 
-        models.forEach(function (model) {
+        models.sort().forEach(function (model) {
           var option = $('<option></option>').attr('value', model).text(model);
           modelDropdown.append(option);
         });
