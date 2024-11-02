@@ -126,6 +126,17 @@
   display: none;
 }
 
+
+.default-behavior-indicator {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: #ff9999;
+  vertical-align: middle;
+}
+
+
+
   </style>
 
 </head>
@@ -133,185 +144,169 @@
 <body>
 
 
+
   <div class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
+        <!-- Replaced columns with flexbox -->
+        <div class="is-flex is-flex-direction-column is-align-items-center">
+          <h1 class="title is-1 publication-title has-text-centered">GRADE: Quantifying Sample Diversity <br> in Text-to-Image Models</h1>
+          <div class="is-size-5 publication-authors has-text-centered">
+            <span class="author-block">
+              <a href="https://royi-rassin.netlify.app/">Royi Rassin</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://lovodkin93.github.io/">Aviv Slobodkin</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://shauli-ravfogel.netlify.app/">Shauli Ravfogel</a><sup>1,4</sup>,</span>
+            <span class="author-block">
+              <a href="https://yanaiela.github.io/">Yanai Elazar</a><sup>2,3</sup>,</span>
+            <span class="author-block">
+              <a href="https://twitter.com/yoavgo?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Yoav
+                Goldberg</a><sup>1,2</sup>,
+            </span>
+          </div>
 
+          <div class="is-size-5 publication-authors has-text-centered">
+            <span class="author-block">Bar-Ilan University</span><sup>1</sup>
+            <span class="author-block">Allen Institute for AI</span><sup>2</sup>
+            <span class="author-block">University of Washington</span><sup>3</sup>
+            <span class="author-block">ETH Zürich</span><sup>4</sup>
+          </div>
 
-            <h1 class="title is-1 publication-title">GRADE: Quantifying Sample Diversity <br> in Text-to-Image Models</h1>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <a href="https://royi-rassin.netlify.app/">Royi Rassin</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="https://lovodkin93.github.io/">Aviv Slobodkin</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="https://shauli-ravfogel.netlify.app/">Shauli Ravfogel</a><sup>1,4</sup>,</span>
-              <span class="author-block">
-                <a href="https://yanaiela.github.io/">Yanai Elazar</a><sup>2,3</sup>,</span>
-              <span class="author-block">
-                <a href="https://twitter.com/yoavgo?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Yoav
-                  Goldberg</a><sup>1,2</sup>,
-              </span>
-            </div>
-
-
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">Bar-Ilan University</span><sup>1</sup>
-              <span class="author-block">Allen Institute for AI</span><sup>2</sup>
-              <span class="author-block">University of Washington</span><sup>3</sup>
-              <span class="author-block">ETH Zürich</span><sup>4</sup>
-
-            </div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/2410.22592" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/2410.22592" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fas fa-file-pdf"></i>
                 </span>
-                <!-- Code Link -->
-                <span class="link-block">
-                  <a href="https://github.com/RoyiRa/GRADE-Quantifying-sample-diversity-in-text-to-image-models"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
+                <span>Paper</span>
+              </a>
+            </span>
+            <!-- Code Link -->
+            <span class="link-block">
+              <a href="https://github.com/RoyiRa/GRADE-Quantifying-sample-diversity-in-text-to-image-models"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
                 </span>
-              </div>
-            </div>
+                <span>Code</span>
+              </a>
+            </span>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- Abstract. -->
   <div class="hero is-light is-small">
     <div class="hero-body">
       <div class="container is-max-desktop">
-
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">The gist</h2>
+        <!-- Replaced columns with flexbox -->
+        <div class="is-flex is-justify-content-center">
+          <div style="max-width: 80%;">
+            <h2 class="title is-3 has-text-centered">The gist</h2>
             <div class="content has-text-justified">
               <p>
-              We introduce <strong>GRADE, a method for assessing the output diversity of images generated by text-to-image models</strong>. Using LLMs and Visual-QA systems, GRADE quantifies diversity across concept-specific attributes by estimating attribute distributions and calculating normalized entropy.
-              <br><br>
-              Our findings reveal substantial homogeneity in T2I outputs, with low diversity across all 12 models we test. Surprisingly, we find bigger and more prompt adherent models deteriorate in diversity. 
-              <br><br>
-              Finally, we hypothesize that low diversity is due to reporting bias in the training data and show that the diversity in LAION, closely corresponds to the diversity of Stable Diffusion 1 and 2, the models that were trained on it.
-
-
-
-
-
+                We introduce <strong>GRADE, a method for assessing the output diversity of images generated by text-to-image models</strong>. Using LLMs and Visual-QA systems, GRADE quantifies diversity across concept-specific attributes by estimating attribute distributions and calculating normalized entropy.
+                <br><br>
+                Our findings reveal substantial homogeneity in T2I outputs, with low diversity across all 12 models we test. Surprisingly, we find bigger and more prompt adherent models deteriorate in diversity. 
+                <br><br>
+                Finally, we hypothesize that low diversity is due to reporting bias in the training data and show that the diversity in LAION, closely corresponds to the diversity of Stable Diffusion 1 and 2, the models that were trained on it.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- GRADE -->
+  <div class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <!-- Replaced columns with flexbox -->
+        <div class="is-flex is-justify-content-center">
+          <div style="max-width: 80%;">
+            <!-- Collapsible Cards -->
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  GRADE
+                </p>
+                <button class="card-header-icon toggle-card-content" aria-label="toggle content">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </header>
+              <div class="card-content is-hidden">
+                <div class="content">
+                  <p>
+                    <!-- GRADE content goes here -->
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  Comparing diversity of text-to-image models
+                </p>
+                <button class="card-header-icon toggle-card-content" aria-label="toggle content">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </header>
+              <div class="card-content is-hidden">
+                <div class="content">
+                  <p>
+                    <!-- Results content goes here -->
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  Is low diversity rooted in the training data?
+                </p>
+                <button class="card-header-icon toggle-card-content" aria-label="toggle content">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </header>
+              <div class="card-content is-hidden">
+                <div class="content">
+                  <p>
+                    <!-- Training Data content goes here -->
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
       </div>
     </div>
   </div>
-<!-- GRADE -->
-<div class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-
-      <div class="columns is-centered">
-        <div class="column is-four-fifths">
-
-          <!-- Collapsible Cards -->
-  <div class="card">
-    <header class="card-header">
-      <p class="card-header-title">
-        GRADE
-      </p>
-      <button class="card-header-icon toggle-card-content" aria-label="toggle content">
-        <span class="icon">
-           <i class="fas fa-angle-down" aria-hidden="true"></i>
-        </span>
-      </button>
-    </header>
-    <div class="card-content is-hidden">
-      <div class="content">
-        <p>
-          <!-- GRADE content goes here -->
-        </p>
-      </div>
-    </div>
-  </div>
-
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title">
-          Comparing diversity of text-to-image models
-        </p>
-        <button class="card-header-icon toggle-card-content" aria-label="toggle content">
-          <span class="icon">
-             <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </button>
-      </header>
-      <div class="card-content is-hidden">
-        <div class="content">
-          <p>
-            <!-- Results content goes here -->
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <header class="card-header">
-        <p class="card-header-title">
-          Is low diversity rooted in the training data?
-        </p>
-        <button class="card-header-icon toggle-card-content" aria-label="toggle content">
-          <span class="icon">
-             <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </button>
-      </header>
-      <div class="card-content is-hidden">
-        <div class="content">
-          <p>
-            <!-- Training Data content goes here -->
-          </p>
-        </div>
-      </div>
-    </div>
-
-  
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 
 
-<!-- Content after Abstract -->
+ <!-- Content after Abstract -->
   <div class="hero is-light is-small">
     <div class="hero-body">
       <div class="container is-max-desktop">
 
-      <!-- Dropdown menus end here -->
-
-      <!-- Accordion -->
-        <div class="columns">
-          <div class="column">
+        <!-- Accordion -->
+        <!-- Replaced columns with flexbox -->
+        <div class="is-flex">
+          <div class="flex-item" style="flex: 1;">
             <div class="field">
               <label class="label">Identified attributes for                 
                 <div class="select is-rounded is-dark">
@@ -319,9 +314,6 @@
                     <!-- Options will be populated by JavaScript -->
                   </select>
                 </div>
-
-                <!-- <span id="selected-concept-display"></span> (click to compare models): -->
-
               </label>
               <div class="control">
                 <div class="accordion" id="question-accordion">
@@ -351,30 +343,30 @@
     </div>
   </div>
 
-  <!-- Cite Us -->
+
+ <!-- Cite Us -->
   <section class="section" id="BibTeX">
     <div class="container is-centered is-max-desktop content">
       <h2 class="title has-text-centered ">Cite Us 📜🖊️</h2>
       <pre><code>@misc{rassin2024gradequantifyingsamplediversity,
-        title={GRADE: Quantifying Sample Diversity in Text-to-Image Models}, 
-        author={Royi Rassin and Aviv Slobodkin and Shauli Ravfogel and Yanai Elazar and Yoav Goldberg},
-        year={2024},
-        eprint={2410.22592},
-        archivePrefix={arXiv},
-        primaryClass={cs.CV},
-        url={https://arxiv.org/abs/2410.22592}, 
-  }
+    title={GRADE: Quantifying Sample Diversity in Text-to-Image Models}, 
+    author={Royi Rassin and Aviv Slobodkin and Shauli Ravfogel and Yanai Elazar and Yoav Goldberg},
+    year={2024},
+    eprint={2410.22592},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV},
+    url={https://arxiv.org/abs/2410.22592}, 
+}
 </code></pre>
     </div>
   </section>
 
-
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
+      <div class="is-flex is-justify-content-center">
+        <div style="max-width: 80%;">
+          <div class="content has-text-centered">
             <p>
               This website is licensed under a <a rel="license"
                 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
@@ -616,7 +608,7 @@
               (<span style="display: inline-block; width: 1em; height: 1em; background-color: #ff9999; vertical-align: middle;"></span> indicates a default behavior)
             </h2>
             <!-- Histogram Grid -->
-            <div id="histogram-grid-${index}" class="histogram-grid" style="display: none; padding-top: 3em;">
+            <div id="histogram-grid-${index}" class="histogram-grid is-flex is-flex-wrap-wrap is-justify-content-center" style="display: none; padding-top: 3em;">
               <!-- Histograms will be appended here -->
             </div>
           `;
@@ -637,8 +629,8 @@ var accordionItem = `
           Diversity score (normalized entropy) plotted against parameter size
         </h2>
         <!-- Plot Image Div -->
-        <div id="plot-div-${index}">
-          <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none; margin: 0 auto; display: block;">
+        <div id="plot-div-${index}" class="is-flex is-justify-content-center">
+          <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none;">
         </div>
         ${
           question !== "all" 
