@@ -135,6 +135,22 @@
   vertical-align: middle;
 }
 
+/* Responsive Image Styling */
+.responsive-image {
+  width: 100%;
+  height: auto;
+  max-width: 800px; /* Optional: set a maximum width */
+  margin: 0 auto;
+  display: block;
+}
+
+/* For smaller screens, adjust if needed */
+@media (max-width: 600px) {
+  .responsive-image {
+    max-width: 100%; /* Allow images to take up full width on small screens */
+  }
+}
+
 
 
   </style>
@@ -335,7 +351,8 @@
             </div>
           </label>
           <div class="control">
-            <img id="result-image" alt="Please select a model and a concept" style="max-width: 100%; height: auto;">
+            <img id="result-image" alt="Please select a model and a concept" class="responsive-image">
+
           </div>
         </div>
 
@@ -630,8 +647,9 @@ var accordionItem = `
         </h2>
         <!-- Plot Image Div -->
         <div id="plot-div-${index}" class="is-flex is-justify-content-center">
-          <img id="plot-image-${index}" src="" alt="Plot will be displayed here" style="max-width: 50%; height: auto; display: none;">
+          <img id="plot-image-${index}" src="" alt="Plot will be displayed here" class="responsive-image" style="display: none;">
         </div>
+
         ${
           question !== "all" 
             ? `
@@ -740,7 +758,8 @@ var accordionItem = `
         var img = $('<img>')
           .attr('src', histogramImagePath)
           .attr('alt', 'Histogram for ' + concept + ' - ' + question)
-          .css({ 'max-width': '100%', 'height': 'auto' });
+          .addClass('responsive-image');
+
 
         // Add error handling
         img.on('error', function () {
