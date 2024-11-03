@@ -19,7 +19,6 @@
 
     gtag('config', 'G-PYVRSFMDRL');
   </script>
-
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
@@ -36,137 +35,160 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
-  <!--   <script src="./static/js/bulma-slider.min.js"></script> -->
 
 
-    <!-- Custom CSS to increase font sizes -->
   <style>
-
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Castoro');
-
-
-/* Define CSS Variables for Dark Theme (Optional) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --plot-title-color: #87AFC7;     /* Turquoise */
-    --question-title-color: #D4B85B; /* Light Blue */
-    --subtitle-color: #D4B85B;       /* Khaki */
-    --attribute-values-color: #E6E6E6;/* White */
-  }
-}
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Castoro');
 
 
 
-    /* Increase font size for accordion buttons */
-    .accordion-button {
-      font-size: 20px; /* Adjust as needed */
+
+    /* Define CSS Variables for Dark Theme (Optional) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --plot-title-color: #87AFC7;
+        --question-title-color: #D4B85B;
+        --subtitle-color: #D4B85B;
+        --attribute-values-color: #E6E6E6;
+      }
+    }
+
+    /* Increase font size for collapsible buttons */
+    .collapsible-button {
+      font-size: 20px;
+      /* Adjust as needed */
     }
 
     /* Increase font size for labels */
     .label {
-      font-size: 20px; /* Adjust as needed */
+      font-size: 20px;
       line-height: 50px;
-
     }
+
     .control {
       font-size: 20px;
     }
 
-
-    /* Plot Title */
     .plot-title {
       font-family: 'Noto Sans', sans-serif;
-      color: var(--plot-title-color);
+      color: #87AFC7 !important;;
       text-align: center;
       margin-bottom: 1em;
-      font-size: 1.8em; /* Increased from 1.5em */
+      font-size: 1em;
     }
 
-    /* Question Title */
     .question-title {
       font-family: 'Noto Sans', sans-serif;
-      color: var(--question-title-color);
+      color: var(--question-title-color) !important;;
       text-align: center;
-      padding-top: 3em;
-      font-size: 1.5em; /* Increased from 1.3em */
+      padding-top: 1em;
+      font-size: 1em;
     }
 
-  /* Subtitle */
-  .subtitle {
-    font-family: 'Noto Sans', sans-serif;
-    color: var(--subtitle-color);
-    text-align: center;
-    font-size: 1.3em; /* Increased from 1.1em */
+    .subtitle {
+      font-family: 'Noto Sans', sans-serif;
+      color: var(--subtitle-color) !important;;
+      text-align: center;
+      font-size: 1em;
+      /* padding-top: 2em; */
+
+    }
+
+    .attribute-values {
+      font-family: 'Noto Sans', sans-serif;
+      color: var(--attribute-values-color);
+      text-align: center;
+      font-size: 1em;
+    }
+
+    .responsive-image {
+      width: 100%;
+      height: auto;
+      max-width: 800px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* For smaller screens, adjust if needed */
+    @media (max-width: 600px) {
+      .responsive-image {
+        max-width: 100%;
+        /* Allow images to take up full width on small screens */
+      }
+    }
+
+    /* Custom styles for collapsible cards */
+    .card-header-icon {
+      cursor: pointer;
+    }
+
+    .is-hidden {
+      display: none;
+    }
+
+    /* Custom styles for default behavior indicator */
+    .default-behavior-indicator {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: #ff9999;
+      vertical-align: middle;
+    }
+
+    .model-card-title {
+      text-transform: uppercase;
+    }
+    .show-more-link {
+     display: block;
+     text-align: right;
+     margin-top: 10px;
+     color: #0e50bc !important; /* Adjust the color if needed */
+     font-size: 1.25em; /* Adjust the font size if needed */
+   }
+
+   .show-more-link:hover {
+     text-decoration: underline;
+   }
+
+  /* Increase the maximum width of images within histogram-grid */
+  .histogram-grid img.responsive-image {
+    max-width: 1000px; /* Adjust this value as needed */
+    width: 100%; /* Ensures the image scales with the container */
   }
 
-  /* Optional: Attribute Values */
-  .attribute-values {
-    font-family: 'Noto Sans', sans-serif;
-    color: var(--attribute-values-color);
-    text-align: center;
-    font-size: 1.2em; /* Adjust as needed */
+  /* Optional: Ensure the histogram-grid container allows the image to grow */
+  .histogram-grid {
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically if needed */
+    width: 100%; /* Ensures the container takes full width of its parent */
+    padding-top: 3em; /* Maintains existing padding */
   }
 
-  /* Accordion Button Hover and Focus States */
-  .accordion-button {
-    transition: background-color 0.3s, color 0.3s;
+  /* Responsive adjustments if needed */
+  @media (max-width: 1200px) {
+    .histogram-grid img.responsive-image {
+      max-width: 80%; /* Adjust for medium screens */
+    }
   }
 
-  .accordion-button:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
-    color: var(--plot-title-color); /* Change text color on hover */
+  @media (max-width: 800px) {
+    .histogram-grid img.responsive-image {
+      max-width: 100%; /* Full width on smaller screens */
+    }
   }
-
-  .accordion-button:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0, 85, 87, 0.25); /* Darker Teal focus ring */
-  }
-
-.is-hidden {
-  display: none;
-}
-
-
-.default-behavior-indicator {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  background-color: #ff9999;
-  vertical-align: middle;
-}
-
-/* Responsive Image Styling */
-.responsive-image {
-  width: 100%;
-  height: auto;
-  max-width: 800px; /* Optional: set a maximum width */
-  margin: 0 auto;
-  display: block;
-}
-
-/* For smaller screens, adjust if needed */
-@media (max-width: 600px) {
-  .responsive-image {
-    max-width: 100%; /* Allow images to take up full width on small screens */
-  }
-}
-
-
-
   </style>
-
 </head>
-
 <body>
-
-
 
   <div class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <!-- Replaced columns with flexbox -->
         <div class="is-flex is-flex-direction-column is-align-items-center">
-          <h1 class="title is-1 publication-title has-text-centered">GRADE: Quantifying Sample Diversity <br> in Text-to-Image Models</h1>
+          <h1 class="title is-1 publication-title has-text-centered">GRADE: Quantifying Sample Diversity <br> in
+            Text-to-Image Models</h1>
           <div class="is-size-5 publication-authors has-text-centered">
             <span class="author-block">
               <a href="https://royi-rassin.netlify.app/">Royi Rassin</a><sup>1</sup>,</span>
@@ -177,7 +199,8 @@
             <span class="author-block">
               <a href="https://yanaiela.github.io/">Yanai Elazar</a><sup>2,3</sup>,</span>
             <span class="author-block">
-              <a href="https://twitter.com/yoavgo?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Yoav
+              <a
+                href="https://twitter.com/yoavgo?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Yoav
                 Goldberg</a><sup>1,2</sup>,
             </span>
           </div>
@@ -214,7 +237,6 @@
     </div>
   </div>
 
-
   <!-- Abstract. -->
   <div class="hero is-light is-small">
     <div class="hero-body">
@@ -222,160 +244,104 @@
         <!-- Replaced columns with flexbox -->
         <div class="is-flex is-justify-content-center">
           <div style="max-width: 80%;">
-            <h2 class="title is-3 has-text-centered">The gist</h2>
+            <!-- <h2 class="title has-text-centered">The gist</h2> -->
             <div class="content has-text-justified">
-              <p>
-                We introduce <strong>GRADE, a method for assessing the output diversity of images generated by text-to-image models</strong>. Using LLMs and Visual-QA systems, GRADE quantifies diversity across concept-specific attributes by estimating attribute distributions and calculating normalized entropy.
-                <br><br>
-                Our findings reveal substantial homogeneity in T2I outputs, with low diversity across all 12 models we test. Surprisingly, we find bigger and more prompt adherent models deteriorate in diversity. 
-                <br><br>
-                Finally, we hypothesize that low diversity is due to reporting bias in the training data and show that the diversity in LAION, closely corresponds to the diversity of Stable Diffusion 1 and 2, the models that were trained on it.
+              <p class="is-size-5 has-text-weight-normal">
+                We introduce <strong>GRADE, a method for assessing the output diversity of images generated by
+                  text-to-image models</strong>. Using LLMs and Visual-QA systems, GRADE quantifies diversity across
+                concept-specific attributes by estimating attribute distributions and calculating normalized entropy.
               </p>
+              
+              <div id="hiddenContent" class="hidden-content">
+                <p class="is-size-5 has-text-weight-normal">
+                  Our findings reveal substantial homogeneity in T2I outputs, with low diversity across all 12 models we
+                  test. Surprisingly, we find bigger and more prompt adherent models deteriorate in diversity.
+                </p>
+                <p class="is-size-5 has-text-weight-normal">
+                  Finally, we hypothesize that low diversity is due to reporting bias in the training data and show that
+                  the diversity in LAION, closely corresponds to the diversity of Stable Diffusion 1 and 2, the models
+                  that were trained on it.
+                </p>
+              </div>
+              
+              <a href="#" id="toggleLink" class="show-more-link">More</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
- <!-- GRADE -->
-  <div class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <!-- Replaced columns with flexbox -->
-        <div class="is-flex is-justify-content-center">
-          <div style="max-width: 80%;">
-            <!-- Collapsible Cards -->
-            <div class="card">
-              <header class="card-header">
-                <p class="card-header-title">
-                  GRADE
-                </p>
-                <button class="card-header-icon toggle-card-content" aria-label="toggle content">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </header>
-              <div class="card-content is-hidden">
-                <div class="content">
-                  <p>
-                    <!-- GRADE content goes here -->
-                  </p>
-                </div>
+
+
+<!-- Content after Abstract -->
+<div class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+
+      <!-- Concept Selection and Questions -->
+      <h2 class="title has-text-centered">Select a concept to explore it's generated diversity 🌟 🖼️</h2>
+
+      <div class="is-flex">
+        <div class="flex-item" style="flex: 1;">
+          <div class="field"  style="text-align: center;">
+            <!-- Changed label text -->
+            <!-- <label class="label">Explore the concept -->
+              <div class="select is-rounded is-dark">
+                <select id="concept-select">
+                  <!-- Options will be populated by JavaScript -->
+                </select>
+              </div>
+            <!-- </label> -->
+            <!-- Added instructional text -->
+            <p class="is-size-5 has-text-weight-normal">
+              Select one of the attributes to view the distributions and diversity of the models.
+            </p>
+            <div class="control">
+              <div id="question-cards">
+                <!-- Question cards will be populated by JavaScript -->
               </div>
             </div>
-
-            <div class="card">
-              <header class="card-header">
-                <p class="card-header-title">
-                  Comparing diversity of text-to-image models
-                </p>
-                <button class="card-header-icon toggle-card-content" aria-label="toggle content">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </header>
-              <div class="card-content is-hidden">
-                <div class="content">
-                  <p>
-                    <!-- Results content goes here -->
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <header class="card-header">
-                <p class="card-header-title">
-                  Is low diversity rooted in the training data?
-                </p>
-                <button class="card-header-icon toggle-card-content" aria-label="toggle content">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </header>
-              <div class="card-content is-hidden">
-                <div class="content">
-                  <p>
-                    <!-- Training Data content goes here -->
-                  </p>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
-
       </div>
+
+      <!-- Separator and New Section for Image Display -->
+      <hr>
+
+      <h2 class="title has-text-centered">Explore images generated by different models 🤖 🎨</h2>
+      <!-- Updated label in the Image Display section -->
+      <div class="field">
+        <p class="is-size-5 has-text-weight-normal">
+          Click on one of the models to view a sample of the generated images for this concept
+        </p>
+        <div class="control">
+          <div id="model-cards">
+            <!-- Model cards will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
 
-
-
- <!-- Content after Abstract -->
-  <div class="hero is-light is-small">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-
-        <!-- Accordion -->
-        <!-- Replaced columns with flexbox -->
-        <div class="is-flex">
-          <div class="flex-item" style="flex: 1;">
-            <div class="field">
-              <label class="label">Identified attributes for                 
-                <div class="select is-rounded is-dark">
-                  <select id="concept-select">
-                    <!-- Options will be populated by JavaScript -->
-                  </select>
-                </div>
-              </label>
-              <div class="control">
-                <div class="accordion" id="question-accordion">
-                  <!-- Accordion items will be populated by JavaScript -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Image Display -->
-        <div class="field">
-          <label class="label">Showing samples from
-            <!-- Model Dropdown Moved Here -->
-            <div class="select is-rounded is-dark" style="display: inline-block; margin-left: 10px;">
-              <select id="model-select">
-                <!-- Options will be populated by JavaScript -->
-              </select>
-            </div>
-          </label>
-          <div class="control">
-            <img id="result-image" alt="Please select a model and a concept" class="responsive-image">
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
- <!-- Cite Us -->
+  <!-- Cite Us -->
   <section class="section" id="BibTeX">
     <div class="container is-centered is-max-desktop content">
       <h2 class="title has-text-centered ">Cite Us 📜🖊️</h2>
-      <pre><code>@misc{rassin2024gradequantifyingsamplediversity,
-    title={GRADE: Quantifying Sample Diversity in Text-to-Image Models}, 
-    author={Royi Rassin and Aviv Slobodkin and Shauli Ravfogel and Yanai Elazar and Yoav Goldberg},
-    year={2024},
-    eprint={2410.22592},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV},
-    url={https://arxiv.org/abs/2410.22592}, 
+
+<pre><code class="language-bibtex">
+@misc{rassin2024gradequantifyingsamplediversity,
+  title={GRADE: Quantifying Sample Diversity in Text-to-Image Models}, 
+  author={Royi Rassin and Aviv Slobodkin and Shauli Ravfogel and Yanai Elazar and Yoav Goldberg},
+  year={2024},
+  eprint={2410.22592},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2410.22592}, 
 }
 </code></pre>
-    </div>
+  </div>
   </section>
 
   <!-- Footer -->
@@ -401,12 +367,31 @@
 
   <!-- JavaScript Code -->
   <script>
+
+document.getElementById('toggleLink').addEventListener('click', function(event) {
+     event.preventDefault(); // Prevent the default link behavior
+     var hiddenContent = document.getElementById('hiddenContent');
+     var link = document.getElementById('toggleLink');
+     
+     if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
+       hiddenContent.style.display = 'block';
+       link.textContent = 'Less';
+     } else {
+       hiddenContent.style.display = 'none';
+       link.textContent = 'More';
+     }
+   });
+      
+      // Initialize the hidden content as hidden
+      document.getElementById('hiddenContent').style.display = 'none';
+
     // Global variables
-    var models = ['sd-1.1', 'sd-1.4', 'sd-2.1', 'sdxl', 'sdxl-turbo', 'lcm-sdxl', 'sd-3', 'flux-dev', 'flux-schnell', 'deepfloyd-l', 'deepfloyd-m', 'deepfloyd-xl'];
-      // List of concepts
+    var models = ['sd-1.1', 'sd-1.4', 'sd-2.1', 'sd-3', 'sdxl', 'sdxl-turbo', 'lcm-sdxl', 'flux-dev', 'flux-schnell', 'deepfloyd-l', 'deepfloyd-m', 'deepfloyd-xl'];
+
+    // List of concepts
     var concepts = ['a helmet', 'a bin', 'a telescope', 'a teapot', 'a rug', 'a parachute', 'a table', 'a chair', 'a spinning wheel', 'a ring', 'an ice cream', 'a cake', 'a suitcase', 'a clock', 'a book', 'a bottle', 'a lantern', 'a guitar', 'a uniform', 'a baseball bat', 'yogurt', 'a pair of headphones', 'an umbrella', 'a jewelry box', 'a window', 'a drawer', 'a cookie jar', 'a toolbox', 'a person', 'a balloon', 'a flower', 'a spacesuit', 'a car', 'a sandcastle', 'a sandwich', 'a pair of shoes', 'a torch', 'a neon sign', 'a box', 'an apple', 'a bag', 'a bear', 'a bell', 'hiking boots', 'a clown', 'a crown', 'a mailbox', 'a pot', 'a pillow', 'a pool', 'a popsicle', 'a pretzel', 'a princess', 'a refrigerator', 'a rope', 'a cookie', 'a cup of soda', 'a stick', 'a tie', 'a toy', 'a tree', 'cheese', 'a clothes iron', 'a banana', 'an egg', 'a fish', 'a flashlight', 'a tiara', 'a burger', 'a cow', 'a paintbrush', 'a vase', 'a dice', 'a cupcake', 'a magnifying glass', 'a frisbee', 'a picnic basket', 'a hat', 'a chess piece', 'a puzzle', 'a mask', 'a garden gnome', 'a pacifier', 'a sculpture', 'a tablecloth', 'a brick', 'a witch', 'a detective', 'a present', 'a door', 'a pair of glasses', 'a mirror', 'a coconut', 'a taxi', 'coffee', 'a hot dog', 'soap', 'popcorn', 'corn', 'a stroller'];
     var conceptToQuestions = {};
-    firstTimeGridImagesShown = true;
+    var firstTimeGridImagesShown = true;
 
     // Function to parse CSV line
     function parseCSVLine(str) {
@@ -435,7 +420,7 @@
       return result;
     }
 
-       document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
       // Initialize all elements with carousel class.
       var carousels = bulmaCarousel.attach('#results-carousel', {
         slidesToScroll: 1,
@@ -447,9 +432,7 @@
       });
 
       // Get references to the select elements
-      var modelSelect = document.getElementById('model-select');
       var conceptSelect = document.getElementById('concept-select');
-      var resultImage = document.getElementById('result-image');
 
       // Fetch the CSV file
       jQuery.get('static/grade_benchmark.csv', function (data) {
@@ -482,81 +465,131 @@
         });
 
         populateConceptDropdown();
-        populateModelDropdown();
+        populateModelCards();     
+
+
       }
 
-      // Function to populate the concept dropdown
-      function populateConceptDropdown() {
-        var conceptDropdown = $('#concept-select');
-        conceptDropdown.empty();
+    // Function to populate the concept dropdown
+    function populateConceptDropdown() {
+      var conceptDropdown = $('#concept-select');
+      conceptDropdown.empty();
 
-        Object.keys(conceptToQuestions).sort().forEach(function (concept) {
-          var option = $('<option></option>').attr('value', concept).text(concept);
-          conceptDropdown.append(option);
+      Object.keys(conceptToQuestions).sort().forEach(function (concept) {
+        var option = $('<option></option>').attr('value', concept).text(concept);
+        conceptDropdown.append(option);
+      });
+
+      // Set default value
+      conceptDropdown.val('a cake');
+
+      // Remove any existing event listeners
+      conceptDropdown.off('change');
+
+      // Add event listener for concept change
+      conceptDropdown.on('change', function () {
+        var selectedConcept = $(this).val();
+        populateQuestionCards(selectedConcept);
+
+        // Clear images in model cards
+        $('.responsive-image').attr('src', '');
+
+        populateModelCards();     
+      });
+
+      // Trigger change event to populate questions for the first concept
+      conceptDropdown.trigger('change');
+    }
+
+      // Function to populate the model cards
+      function populateModelCards() {
+        var modelCardsContainer = $('#model-cards');
+        modelCardsContainer.empty();
+
+        models.sort().forEach(function (model, index) {
+
+        // Determine if this is the first card
+        var isFirstCard = index === 0;
+
+        // Set the class for card-content
+        var isHiddenClass = isFirstCard ? '' : 'is-hidden';
+        
+        // Set the icon class
+        var iconClass = isFirstCard ? 'fa-angle-up' : 'fa-angle-down';
+        // Create the card for the model
+        var card = `
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title model-card-title">
+            ${model}
+          </p>
+          <button class="card-header-icon toggle-model-content" aria-label="toggle content">
+            <span class="icon">
+              <i class="fas ${iconClass}" aria-hidden="true"></i>
+            </span>
+          </button>
+        </header>
+        <div class="card-content ${isHiddenClass}">
+          <div class="content">
+            <img id="result-image-${index}" alt="Image of concept generated by ${model}" class="responsive-image">
+          </div>
+        </div>
+      </div>
+    `;
+
+
+          modelCardsContainer.append(card);
+           // If this is the first card, load the image immediately
+    if (isFirstCard) {
+      var concept = $('#concept-select').val();
+      if (concept) {
+        var imagePath = constructImagePath(model, concept);
+        var resultImage = $('#result-image-' + index);
+        resultImage.attr('src', imagePath);
+        resultImage.attr('alt', 'Image of ' + concept + ' generated by ' + model);
+        resultImage.on('error', function () {
+          $(this).attr('src', ''); // Clear the src
+          alert('Grid Image not found. Please try another combination.');
         });
+      }
+    }
+  });
 
-        // Set default value
-        conceptDropdown.val('a cake');
+        // Add click event listener to toggle buttons
+        $('.toggle-model-content').on('click', function () {
+          var button = $(this);
+          var card = button.closest('.card');
+          var cardContent = card.find('.card-content');
+          var icon = button.find('i');
 
-        // Remove any existing event listeners
-        conceptDropdown.off('change');
+          // Toggle the 'is-hidden' class to show/hide content
+          cardContent.toggleClass('is-hidden');
 
-        // Add event listener for concept change
-        conceptDropdown.on('change', function () {
-          var selectedConcept = $(this).val();
-          populateQuestionAccordion(selectedConcept);
-          if (!firstTimeGridImagesShown) {
-            updateImage(); // Update the image when concept changes
+          // Toggle the icon direction
+          if (cardContent.hasClass('is-hidden')) {
+            icon.removeClass('fa-angle-up').addClass('fa-angle-down');
+          } else {
+            icon.removeClass('fa-angle-down').addClass('fa-angle-up');
+
+            // Load the image
+            var index = card.index();
+            var model = models.sort()[index];
+            var concept = $('#concept-select').val();
+            if (concept) {
+              var imagePath = constructImagePath(model, concept);
+              var resultImage = $('#result-image-' + index);
+              resultImage.attr('src', imagePath);
+              resultImage.attr('alt', 'Image of ' + concept + ' generated by ' + model);
+              resultImage.on('error', function () {
+                $(this).attr('src', ''); // Clear the src
+                alert('Grid Image not found. Please try another combination.');
+              });
+            }
           }
         });
-
-        // Trigger change event to populate questions for the first concept
-        conceptDropdown.trigger('change');
       }
 
-      // Function to populate the model dropdown
-      function populateModelDropdown() {
-        var modelDropdown = $('#model-select');
-        modelDropdown.empty();
-
-        models.sort().forEach(function (model) {
-          var option = $('<option></option>').attr('value', model).text(model);
-          modelDropdown.append(option);
-        });
-
-        // Set default value
-        modelDropdown.val('flux-dev');
-
-        // Remove any existing event listeners
-        modelDropdown.off('change');
-
-        // Add event listener for model change
-        modelDropdown.on('change', function () {
-          updateImage();
-        });
-
-        // Trigger change event to update image for the first model
-        modelDropdown.trigger('change');
-      }
-
-      // Function to update the image based on selections
-      function updateImage() {
-        var model = modelSelect.value;
-        var concept = conceptSelect.value;
-        console.log('now testing you mate', model, concept, 'test me now')
-        if (model && concept) {
-          // Construct the image path
-          var imagePath = constructImagePath(model, concept);
-          console.log(imagePath, ' wow!')
-          // Update the src attribute of the image
-          resultImage.src = imagePath;
-
-          // Update the alt attribute
-          resultImage.alt = 'Image of ' + concept + ' generated by ' + model;
-          firstTimeGridImagesShown = false;
-        }
-      }
-
+      // Function to construct the image path
       function constructImagePath(model, concept) {
         // Clean up the concept to match the filename
         var conceptInFilename = concept;
@@ -567,17 +600,10 @@
         return imagePath;
       }
 
-      // Add error handling for the image
-      resultImage.addEventListener('error', function () {
-        resultImage.src = ''; // Remove the broken image
-        alert('Grid Image not found. Please try another combination.');
-      });
-
-      // Function to populate the accordion
-      function populateQuestionAccordion(concept) {
-        $('#selected-concept-display').text(concept);
-        var questionAccordion = $('#question-accordion');
-        questionAccordion.empty();
+      // Function to populate the question cards
+      function populateQuestionCards(concept) {
+        var questionCardsContainer = $('#question-cards');
+        questionCardsContainer.empty();
 
         var questionItems = conceptToQuestions[concept];
         questionItems.forEach(function (item, index) {
@@ -592,12 +618,12 @@
             attributeList = attribute_values
             // Check and remove the opening bracket
             if (attributeList.startsWith('[')) {
-                attributeList = attributeList.substring(1);
+              attributeList = attributeList.substring(1);
             }
 
             // Check and remove the closing bracket
             if (attributeList.endsWith(']')) {
-                attributeList = attributeList.substring(0, attributeList.length - 1);
+              attributeList = attributeList.substring(0, attributeList.length - 1);
             }
             var attributeList = attributeList.split(',').map(function (s) { return s.trim(); });
             var letters = 'abcdefghijklmnopqrstuvwxyz';
@@ -612,93 +638,91 @@
             attributeHTML += '</h3>';
           }
 
-        let conditionalContent = '';
-        if (question !== "all") {
-          conditionalContent += `
-            <!-- Title with added padding -->
-            <h1 id="question-title-${index}" style="color: #8c275d; text-align: center; padding-top: 3em;">
-              ${question}
-            </h1>
-            <!-- Subtitle -->
-            <h2 style="color: #8c275d; text-align: center;">
-              Breakdown by model 
-              (<span style="display: inline-block; width: 1em; height: 1em; background-color: #ff9999; vertical-align: middle;"></span> indicates a default behavior)
-            </h2>
-            <!-- Histogram Grid -->
-            <div id="histogram-grid-${index}" class="histogram-grid is-flex is-flex-wrap-wrap is-justify-content-center" style="display: none; padding-top: 3em;">
-              <!-- Histograms will be appended here -->
+          var card = `
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  ${buttonLabel}
+                </p>
+                <button class="card-header-icon toggle-question-content" aria-label="toggle content">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </header>
+              <div class="card-content is-hidden">
+                <div class="content">
+                  <!-- Attribute Values -->
+                  ${
+                  question !== "all" 
+                    ? `
+                      <!-- Title with added padding -->
+                      <h3 class="question-title">
+                        ${question}
+                      </h3>
+                      <h3 class="subtitle" style="text-align: center;">
+                        Breakdown by model 
+                        (<span class="default-behavior-indicator"></span> indicates a default behavior)
+                      </h3>
+                    `
+                    : ''
+                  }
+                  ${attributeHTML}
+                  ${
+                    question !== "all" 
+                      ? `
+                        <!-- Histogram Grid -->
+                        <div id="histogram-grid-${index}" class="histogram-grid" style="display: none; padding-top: 3em;">
+                          <!-- Histograms will be appended here -->
+                        </div>
+                      `
+                      : ''
+                  }
+
+                  <!-- Title Above Plot Image -->
+                  <h3 class="plot-title">
+                    Diversity score (normalized entropy) plotted over parameter size
+                  </h3>
+                  <!-- Plot Image Div -->
+                  <div id="plot-div-${index}" class="is-flex is-justify-content-center">
+                    <img id="plot-image-${index}" src="" alt="Plot will be displayed here" class="responsive-image" style="display: none;">
+                  </div>   
+                </div>
+              </div>
             </div>
           `;
-        }
 
-var accordionItem = `
-  <!-- Updated Accordion Item -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="heading${index}">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
-        ${buttonLabel}
-      </button>
-    </h2>
-    <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}">
-      <div class="accordion-body">
-        <!-- Title Above Plot Image -->
-        <h2 class="plot-title">
-          Diversity score (normalized entropy) plotted against parameter size
-        </h2>
-        <!-- Plot Image Div -->
-        <div id="plot-div-${index}" class="is-flex is-justify-content-center">
-          <img id="plot-image-${index}" src="" alt="Plot will be displayed here" class="responsive-image" style="display: none;">
-        </div>
-
-        ${
-          question !== "all" 
-            ? `
-              <!-- Title with added padding -->
-              <h2 class="question-title">
-                ${question}
-              </h2>
-              <!-- Subtitle -->
-              <h2 class="subtitle">
-                Breakdown by model 
-                (<span style="display: inline-block; width: 1em; height: 1em; background-color: #ff9999; vertical-align: middle;"></span> indicates a default behavior)
-              </h2>
-            `
-            : ''
-        }
-        <!-- Attribute Values -->
-        ${attributeHTML}
-        ${
-          question !== "all" 
-            ? `
-              <!-- Histogram Grid -->
-              <div id="histogram-grid-${index}" class="histogram-grid" style="display: none; padding-top: 3em;">
-                <!-- Histograms will be appended here -->
-              </div>
-            `
-            : ''
-        }
-      </div>
-    </div>
-  </div>
-`;
-
-
-          questionAccordion.append(accordionItem);
+          questionCardsContainer.append(card);
         });
 
-        // Add click event listener to accordion buttons
-        $('#question-accordion .accordion-button').on('click', function () {
-          var selectedQuestion = $(this).text().trim();
-          var parentAccordionItem = $(this).closest('.accordion-item');
-          var index = parentAccordionItem.index(); // Get the index of the accordion item
-          var selectedConcept = $('#concept-select').val();
+        // Add click event listener to toggle buttons
+        $('.toggle-question-content').on('click', function () {
+          var button = $(this);
+          var card = button.closest('.card');
+          var cardContent = card.find('.card-content');
+          var icon = button.find('i');
 
-          // Map the button label back to 'all' if necessary
-          if (selectedQuestion === 'Mean entropy over all attributes') {
-            selectedQuestion = 'all';
+          // Toggle the 'is-hidden' class to show/hide content
+          cardContent.toggleClass('is-hidden');
+
+          // Toggle the icon direction
+          if (cardContent.hasClass('is-hidden')) {
+            icon.removeClass('fa-angle-up').addClass('fa-angle-down');
+          } else {
+            icon.removeClass('fa-angle-down').addClass('fa-angle-up');
+
+            // Load the plot image
+            var index = card.index();
+            var question = card.find('.card-header-title').text().trim();
+            var selectedConcept = $('#concept-select').val();
+
+            // Map the button label back to 'all' if necessary
+            if (question === 'Mean entropy over all attributes') {
+              question = 'all';
+            }
+
+            loadPlotImage(selectedConcept, question, index);
           }
-
-          loadPlotImage(selectedConcept, selectedQuestion, index);
         });
       }
 
@@ -707,7 +731,7 @@ var accordionItem = `
         var filename = constructPlotFilename(concept, question);
         var filepath = 'static/images/plots/' + filename;
 
-        // Select the specific plot image within the accordion item
+        // Select the specific plot image within the card
         var plotImage = $('#plot-image-' + index);
 
         // Update the 'src' attribute of the image to display the new plot
@@ -772,40 +796,26 @@ var accordionItem = `
         histogramGrid.append(img);
       }
 
-    });
-  </script>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Select all toggle buttons
-    var toggleButtons = document.querySelectorAll('.toggle-card-content');
-
-    toggleButtons.forEach(function(button) {
-      button.addEventListener('click', function () {
-        // Find the closest card container
+      // Toggle functionality for the "Learn more about our work" section
+      $('.toggle-card-content').on('click', function () {
+        var button = $(this);
         var card = button.closest('.card');
-        if (!card) return;
-
-        // Find the card-content within this card
-        var cardContent = card.querySelector('.card-content');
-        if (!cardContent) return;
+        var cardContent = card.find('.card-content');
+        var icon = button.find('i');
 
         // Toggle the 'is-hidden' class to show/hide content
-        cardContent.classList.toggle('is-hidden');
+        cardContent.toggleClass('is-hidden');
 
         // Toggle the icon direction
-        var icon = button.querySelector('i');
-        if (cardContent.classList.contains('is-hidden')) {
-          icon.classList.remove('fa-angle-up');
-          icon.classList.add('fa-angle-down');
+        if (cardContent.hasClass('is-hidden')) {
+          icon.removeClass('fa-angle-up').addClass('fa-angle-down');
         } else {
-          icon.classList.remove('fa-angle-down');
-          icon.classList.add('fa-angle-up');
+          icon.removeClass('fa-angle-down').addClass('fa-angle-up');
         }
       });
     });
-  });
   </script>
 
 </body>
 
+</html>
