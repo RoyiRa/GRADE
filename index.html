@@ -506,7 +506,7 @@ document.getElementById('toggleLink').addEventListener('click', function(event) 
         var modelCardsContainer = $('#model-cards');
         modelCardsContainer.empty();
 
-        models.sort().forEach(function (model, index) {
+        models.forEach(function (model, index) {
 
         // Determine if this is the first card
         var isFirstCard = index === 0;
@@ -573,7 +573,8 @@ document.getElementById('toggleLink').addEventListener('click', function(event) 
 
             // Load the image
             var index = card.index();
-            var model = models.sort()[index];
+            // var model = models.sort()[index];
+            var model = models[index];
             var concept = $('#concept-select').val();
             if (concept) {
               var imagePath = constructImagePath(model, concept);
